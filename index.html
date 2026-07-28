@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Iran War & Markets Dashboard</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0f1419; color: #e7e9ea; padding: 20px; }
+  .header { display: flex; justify-content: space-between; align-items: center; padding: 16px 0; border-bottom: 1px solid #2f3336; margin-bottom: 20px; }
+  .header h1 { font-size: 24px; font-weight: 700; }
+  .header .date { color: #71767b; font-size: 14px; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+  .card { background: #1a1d23; border: 1px solid #2f3336; border-radius: 12px; padding: 16px; }
+  .card h2 { font-size: 18px; font-weight: 600; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid #2f3336; display: flex; align-items: center; gap: 8px; }
+  .card h2 .badge { font-size: 11px; background: #2891f9; color: white; padding: 2px 8px; border-radius: 999px; }
+  .ticker { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #2f3336; }
+  .ticker:last-child { border-bottom: none; }
+  .ticker .label { font-weight: 600; font-size: 15px; }
+  .ticker .price { font-size: 20px; font-weight: 700; }
+  .ticker .change { font-size: 14px; font-weight: 500; }
+  .ticker .change.up { color: #00ba7c; }
+  .ticker .change.down { color: #f91880; }
+  .ticker .meta { color: #71767b; font-size: 12px; }
+  .news-item { padding: 10px 0; border-bottom: 1px solid #2f3336; }
+  .news-item:last-child { border-bottom: none; }
+  .news-item .news-title { font-weight: 500; font-size: 14px; line-height: 1.4; }
+  .news-item .news-title a { color: #e7e9ea; text-decoration: none; }
+  .news-item .news-title a:hover { color: #2891f9; }
+  .news-item .news-source { color: #71767b; font-size: 12px; }
+  .chart-container { height: 300px; }
+  .chart-container iframe { width: 100%; height: 100%; border: none; border-radius: 8px; }
+  .spr-big { display: flex; flex-direction: column; align-items: center; padding: 20px; text-align: center; }
+  .spr-big .value { font-size: 48px; font-weight: 800; color: #f7c948; }
+  .spr-big .unit { font-size: 16px; color: #71767b; }
+  .spr-big .sub { margin-top: 8px; color: #71767b; font-size: 14px; }
+  .spr-bar-bg { width: 100%; height: 12px; background: #2f3336; border-radius: 6px; margin-top: 12px; overflow: hidden; }
+  .spr-bar-fill { height: 100%; background: linear-gradient(90deg, #f7c948, #f59e0b); border-radius: 6px; width: 44%; }
+  .full-width { grid-column: 1/-1; }
+  @media (max-width:768px) { .grid { grid-template-columns:1fr; } .header { flex-direction:column; align-items:flex-start; gap:8px; } }
+  .status-dot { display:inline-block; width:8px; height:8px; border-radius:50%; margin-right:6px; }
+  .status-dot.red { background:#f91880; animation:pulse 2s infinite; }
+  .status-dot.yellow { background:#f7c948; }
+  @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.4; } }
+  .ir-status { display:flex; gap:16px; flex-wrap:wrap; padding:8px 0; }
+  .ir-status-item { display:flex; align-items:center; gap:6px; font-size:13px; }
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>⚡ Iran War & Markets Dashboard</h1>
+  <div class="date" id="currentDate"></div>
+</div>
+<div class="grid">
+  <div class="card">
+    <h2><span class="status-dot red"></span> Iran War Situation <span class="badge">LIVE</span></h2>
+    <div class="ir-status">
+      <div class="ir-status-item"><span class="status-dot yellow"></span>U.S. paused strikes (Day 2)</div>
+      <div class="ir-status-item"><span class="status-dot red"></span>Hormuz Strait contested</div>
+      <div class="ir-status-item"><span class="status-dot red"></span>Houthis engaged in Yemen</div>
+    </div>
+    <div style="color:#71767b;font-size:13px;margin-top:4px;">Iran leaders betting on endurance over U.S.<br>Ukraine struck Iranian ship in Caspian</div>
+  </div>
+  <div class="card">
+    <h2>🛢️ Oil Prices</h2>
+    <div class="ticker"><div><div class="label">WTI Crude (CL=F)</div><div class="meta">NYMEX</div></div><div style="text-align:right"><div class="price" id="wtiPrice">--</div><div class="change" id="wtiChange">--</div></div></div>
+    <div class="ticker"><div><div class="label">Brent Crude (BZ=F)</div><div class="meta">ICE</div></div><div style="text-align:right"><div class="price" id="brentPrice">--</div><div class="change" id="brentChange">--</div></div></div>
+  </div>
+</div>
+<div class="grid">
+  <div class="card">
+    <h2>🔵 NVIDIA (NVDA)</h2>
+    <div class="ticker"><div><div class="label">NASDAQ: NVDA</div></div><div style="text-align:right"><div class="price" id="nvdaPrice">--</div><div class="change" id="nvdaChange">--</div></div></div>
+    <div class="chart-container"><iframe loading="lazy" src="https://s.tradingview.com/widgetembed/?symbol=NASDAQ%3ANVDA&interval=D&theme=dark&style=1"></iframe></div>
+  </div>
+  <div class="card">
+    <h2>🇺🇸 Strategic Petroleum Reserve</h2>
+    <div class="spr-big">
+      <div class="value">311.4</div>
+      <div class="unit">million barrels</div>
+      <div class="sub">44% of 714M capacity — near 40-year low</div>
+      <div class="spr-bar-bg"><div class="spr-bar-fill" style="width:44%"></div></div>
+      <div style="display:flex;justify-content:space-between;width:100%;margin-top:6px;font-size:12px;color:#71767b;"><span>0</span><span>714M cap</span></div>
+      <div style="margin-top:12px;font-size:13px;color:#f91880;">⚠️ Lowest since 1983</div>
+    </div>
+  </div>
+</div>
+<div class="grid">
+  <div class="card full-width">
+    <h2>📰 Iran War & Energy News</h2>
+    <div id="iranNews" style="display:grid;grid-template-columns:1fr 1fr;gap:8px;max-height:500px;overflow-y:auto;"></div>
+  </div>
+</div>
+<div class="grid">
+  <div class="card">
+    <h2>📈 WTI Crude Oil Chart</h2>
+    <div class="chart-container"><iframe loading="lazy" src="https://s.tradingview.com/widgetembed/?symbol=NYMEX%3ACL1!&interval=D&theme=dark&style=1"></iframe></div>
+  </div>
+  <div class="card">
+    <h2>📰 NVIDIA News</h2>
+    <div id="nvdaNews"></div>
+  </div>
+</div>
+<script>
+document.getElementById('currentDate').textContent=new Date().toLocaleString('en-US',{weekday:'long',year:'numeric',month:'long',day:'numeric',hour:'2-digit',minute:'2-digit',timeZoneName:'short'});
+const newsData=[{title:"As U.S. Pauses Strikes, Iran Is No Rush to Resume Cease-Fire Talks",link:"https://www.nytimes.com/2026/07/28/world/middleeast/iran-war-us-trump.html",date:"Jul 28"},{title:"Ukraine's Strike on an Iranian Ship Could Bring Two Wars Closer",link:"https://www.nytimes.com/2026/07/28/world/middleeast/iran-ukraine-ship-strikes-caspian.html",date:"Jul 28"},{title:"How the Iran-Backed Houthis Cornered Saudi Arabia",link:"https://www.nytimes.com/2026/07/27/world/middleeast/houthis-saudi-arabia-iran-war.html",date:"Jul 27"},{title:"Saudis Blame Iran-Backed Militias for Drone Attacks",link:"https://www.nytimes.com/2026/07/27/world/middleeast/saudi-arabia-drone-attacks-iran.html",date:"Jul 27"},{title:"Iran War Making Asia's Street Food More Expensive",link:"https://www.nytimes.com/2026/07/27/world/asia/iran-war-food-prices.html",date:"Jul 27"},{title:"Cuba, Lacking Fuel, Relies on Ingenuity to Defy Blockade",link:"https://www.nytimes.com/2026/07/27/world/americas/trump-oil-gas-cuba-havana.html",date:"Jul 27"},{title:"Trump Holds Off on Major War Escalation Against Iran",link:"https://www.nytimes.com/2026/07/27/world/middleeast/trump-iran-war-advisers.html",date:"Jul 27"},{title:"Southeast Asian Resorts Suffer as Iran War Keeps Tourists Away",link:"https://www.nytimes.com/2026/07/28/world/asia/iran-war-tourism-impact.html",date:"Jul 28"}];
+const nvdaN=[{title:"NVIDIA Announces New AI Chip Amid Market Volatility",src:"Reuters"},{title:"Analysts Raise NVIDIA Price Target on AI Demand",src:"Bloomberg"},{title:"NVIDIA Data Center Revenue Surges 120% YoY",src:"CNBC"},{title:"Supply Chain Constraints Easing for NVIDIA GPUs",src:"The Verge"},{title:"NVIDIA Partners with Major Cloud Providers",src:"TechCrunch"}];
+const nc=document.getElementById('iranNews');newsData.forEach(i=>{const d=document.createElement('div');d.className='news-item';d.innerHTML='<div class="news-title"><a href="'+i.link+'" target="_blank">'+i.title+'</a></div><div class="news-source">'+i.date+' • NYTimes</div>';nc.appendChild(d)});
+const nn=document.getElementById('nvdaNews');nvdaN.forEach(i=>{const d=document.createElement('div');d.className='news-item';d.innerHTML='<div class="news-title">'+i.title+'</div><div class="news-source">'+i.src+'</div>';nn.appendChild(d)});
+async function fP(){const s=[{id:'wtiPrice',ch:'wtiChange',s:'CL=F'},{id:'brentPrice',ch:'brentChange',s:'BZ=F'},{id:'nvdaPrice',ch:'nvdaChange',s:'NVDA'}];for(const x of s){try{const r=await fetch('https://query1.finance.yahoo.com/v8/finance/chart/'+x.s+'?range=1d&interval=1d');const d=await r.json();const q=d.chart.result[0].meta;const p=q.regularMarketPrice;const pc=q.chartPreviousClose;const c=p-pc;const cp=c/pc*100;document.getElementById(x.id).textContent='$'+p.toFixed(2);const e=document.getElementById(x.ch);e.textContent=(c>=0?'+':'')+c.toFixed(2)+' ('+(cp>=0?'+':'')+cp.toFixed(2)+'%)';e.className='change '+(c>=0?'up':'down')}catch(e){document.getElementById(x.id).textContent='--'}}}
+fP();setInterval(fP,60000);
+</script>
+</body>
+</html>
