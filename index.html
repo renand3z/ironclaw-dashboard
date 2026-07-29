@@ -3,112 +3,240 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Iran War & Markets Dashboard</title>
+<title>IRAN DASHBOARD · JUL 28</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
 <style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0f1419; color: #e7e9ea; padding: 20px; }
-  .header { display: flex; justify-content: space-between; align-items: center; padding: 16px 0; border-bottom: 1px solid #2f3336; margin-bottom: 20px; }
-  .header h1 { font-size: 24px; font-weight: 700; }
-  .header .date { color: #71767b; font-size: 14px; }
-  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
-  .card { background: #1a1d23; border: 1px solid #2f3336; border-radius: 12px; padding: 16px; }
-  .card h2 { font-size: 18px; font-weight: 600; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid #2f3336; display: flex; align-items: center; gap: 8px; }
-  .card h2 .badge { font-size: 11px; background: #2891f9; color: white; padding: 2px 8px; border-radius: 999px; }
-  .ticker { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #2f3336; }
-  .ticker:last-child { border-bottom: none; }
-  .ticker .label { font-weight: 600; font-size: 15px; }
-  .ticker .price { font-size: 20px; font-weight: 700; }
-  .ticker .change { font-size: 14px; font-weight: 500; }
-  .ticker .change.up { color: #00ba7c; }
-  .ticker .change.down { color: #f91880; }
-  .ticker .meta { color: #71767b; font-size: 12px; }
-  .news-item { padding: 10px 0; border-bottom: 1px solid #2f3336; }
-  .news-item:last-child { border-bottom: none; }
-  .news-item .news-title { font-weight: 500; font-size: 14px; line-height: 1.4; }
-  .news-item .news-title a { color: #e7e9ea; text-decoration: none; }
-  .news-item .news-title a:hover { color: #2891f9; }
-  .news-item .news-source { color: #71767b; font-size: 12px; }
-  .chart-container { height: 300px; }
-  .chart-container iframe { width: 100%; height: 100%; border: none; border-radius: 8px; }
-  .spr-big { display: flex; flex-direction: column; align-items: center; padding: 20px; text-align: center; }
-  .spr-big .value { font-size: 48px; font-weight: 800; color: #f7c948; }
-  .spr-big .unit { font-size: 16px; color: #71767b; }
-  .spr-big .sub { margin-top: 8px; color: #71767b; font-size: 14px; }
-  .spr-bar-bg { width: 100%; height: 12px; background: #2f3336; border-radius: 6px; margin-top: 12px; overflow: hidden; }
-  .spr-bar-fill { height: 100%; background: linear-gradient(90deg, #f7c948, #f59e0b); border-radius: 6px; width: 44%; }
-  .full-width { grid-column: 1/-1; }
-  @media (max-width:768px) { .grid { grid-template-columns:1fr; } .header { flex-direction:column; align-items:flex-start; gap:8px; } }
-  .status-dot { display:inline-block; width:8px; height:8px; border-radius:50%; margin-right:6px; }
-  .status-dot.red { background:#f91880; animation:pulse 2s infinite; }
-  .status-dot.yellow { background:#f7c948; }
-  @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.4; } }
-  .ir-status { display:flex; gap:16px; flex-wrap:wrap; padding:8px 0; }
-  .ir-status-item { display:flex; align-items:center; gap:6px; font-size:13px; }
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;background:#f5efe6;color:#2c2420;padding:24px}
+h1,h2,h3,.anton{font-family:'Anton',sans-serif;text-transform:uppercase;letter-spacing:.5px}
+.header{display:flex;justify-content:space-between;align-items:center;padding:8px 0 20px 0;margin-bottom:16px}
+.header h1{font-size:28px;color:#2c2420;letter-spacing:1px}
+.header .date{font-family:'Inter',sans-serif;font-size:12px;text-transform:uppercase;letter-spacing:2px;color:#7a7068}
+.grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:12px}
+.card{background:#e8dfd4;padding:20px}
+.card h2{font-size:13px;letter-spacing:2px;margin-bottom:12px;color:#7a7068;font-family:'Inter',sans-serif;font-weight:600;text-transform:uppercase}
+.card .macro{text-align:center;padding:8px 0}
+.card .macro .num{font-family:'Anton',sans-serif;font-size:42px;line-height:1;color:#2c2420}
+.card .macro .lbl{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#7a7068;margin-top:4px}
+.card .macro-grid{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:8px;margin-top:8px}
+.macro-item{text-align:center;padding:8px 0}
+.macro-item .num{font-family:'Anton',sans-serif;font-size:28px;color:#2c2420}
+.macro-item .lbl{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:#7a7068;margin-top:2px}
+.ticker-row{display:flex;justify-content:space-between;align-items:baseline;padding:6px 0}
+.ticker-row .label{font-size:12px;text-transform:uppercase;letter-spacing:1px;color:#7a7068}
+.ticker-row .value{font-family:'Anton',sans-serif;font-size:22px;color:#2c2420}
+.ticker-row .change{font-size:12px;font-weight:600}
+.ticker-row .change.down{color:#b33a3a}
+.ticker-row .change.up{color:#2e7d5e}
+.section-label{font-family:'Inter',sans-serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#7a7068;margin:16px 0 8px 0;padding-top:8px;border-top:2px solid #d4c9bc}
+.news-list{max-height:320px;overflow-y:auto}
+.news-list::-webkit-scrollbar{width:4px}
+.news-list::-webkit-scrollbar-thumb{background:#c4b8a8;border-radius:2px}
+.news-item{padding:8px 0;border-bottom:1px solid #d4c9bc;cursor:pointer}
+.news-item:last-child{border-bottom:none}
+.news-item .ntitle{font-size:13px;font-weight:600;line-height:1.3;color:#2c2420}
+.news-item .ntitle:hover{text-decoration:underline}
+.news-item .nmeta{font-size:10px;text-transform:uppercase;letter-spacing:1px;color:#7a7068;margin-top:3px}
+.clickable{cursor:pointer;transition:opacity .15s}
+.clickable:hover{opacity:.75}
+.overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(44,36,32,.85);z-index:100;justify-content:center;align-items:center}
+.overlay.active{display:flex}
+.overlay-content{background:#f5efe6;max-width:700px;width:90%;max-height:80vh;padding:32px;overflow-y:auto;position:relative}
+.overlay-content .close{position:absolute;top:16px;right:20px;font-size:24px;cursor:pointer;color:#7a7068;background:none;border:none;font-family:'Inter',sans-serif}
+.overlay-content h2{font-family:'Anton',sans-serif;font-size:22px;margin-bottom:8px;text-transform:uppercase}
+.overlay-content p{font-size:14px;line-height:1.6;color:#4a3f38;margin-bottom:12px}
+.overlay-content a{color:#2c2420;font-weight:600;text-decoration:underline}
+.full{grid-column:1/-1}
+.w2{grid-column:span 2}
+@media(max-width:900px){.grid{grid-template-columns:1fr 1fr}.w2{grid-column:1/-1}}
+@media(max-width:600px){.grid{grid-template-columns:1fr}}
+.spr-val{font-family:'Anton',sans-serif;font-size:36px;color:#2c2420}
+.spr-unit{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:#7a7068}
+.spr-bar{height:10px;background:#d4c9bc;margin:8px 0;overflow:hidden}
+.spr-bar-fill{height:100%;background:#b33a3a;width:44%}
+.spr-table{width:100%;font-size:11px;margin-top:8px}
+.spr-table th{text-align:left;text-transform:uppercase;letter-spacing:1px;color:#7a7068;font-weight:500;padding:4px 6px 4px 0;border-bottom:1px solid #d4c9bc}
+.spr-table td{padding:4px 6px 4px 0;border-bottom:1px solid #d4c9bc;font-size:12px}
+.spr-table tr:last-child td{border-bottom:none}
 </style>
 </head>
 <body>
+
 <div class="header">
-  <h1>⚡ Iran War & Markets Dashboard</h1>
-  <div class="date" id="currentDate"></div>
+  <h1>IRAN DASHBOARD</h1>
+  <div class="date" id="currentDate">Loading...</div>
 </div>
+
+<!-- Row 1: Macros + Oil + Iran Status -->
 <div class="grid">
   <div class="card">
-    <h2><span class="status-dot red"></span> Iran War Situation <span class="badge">LIVE</span></h2>
-    <div class="ir-status">
-      <div class="ir-status-item"><span class="status-dot yellow"></span>U.S. paused strikes (Day 2)</div>
-      <div class="ir-status-item"><span class="status-dot red"></span>Hormuz Strait contested</div>
-      <div class="ir-status-item"><span class="status-dot red"></span>Houthis engaged in Yemen</div>
-    </div>
-    <div style="color:#71767b;font-size:13px;margin-top:4px;">Iran leaders betting on endurance over U.S.<br>Ukraine struck Iranian ship in Caspian</div>
-  </div>
-  <div class="card">
-    <h2>🛢️ Oil Prices</h2>
-    <div class="ticker"><div><div class="label">WTI Crude (CL=F)</div><div class="meta">NYMEX</div></div><div style="text-align:right"><div class="price" id="wtiPrice">--</div><div class="change" id="wtiChange">--</div></div></div>
-    <div class="ticker"><div><div class="label">Brent Crude (BZ=F)</div><div class="meta">ICE</div></div><div style="text-align:right"><div class="price" id="brentPrice">--</div><div class="change" id="brentChange">--</div></div></div>
-  </div>
-</div>
-<div class="grid">
-  <div class="card">
-    <h2>🔵 NVIDIA (NVDA)</h2>
-    <div class="ticker"><div><div class="label">NASDAQ: NVDA</div></div><div style="text-align:right"><div class="price" id="nvdaPrice">--</div><div class="change" id="nvdaChange">--</div></div></div>
-    <div class="chart-container"><iframe loading="lazy" src="https://s.tradingview.com/widgetembed/?symbol=NASDAQ%3ANVDA&interval=D&theme=dark&style=1"></iframe></div>
-  </div>
-  <div class="card">
-    <h2>🇺🇸 Strategic Petroleum Reserve</h2>
-    <div class="spr-big">
-      <div class="value">311.4</div>
-      <div class="unit">million barrels</div>
-      <div class="sub">44% of 714M capacity — near 40-year low</div>
-      <div class="spr-bar-bg"><div class="spr-bar-fill" style="width:44%"></div></div>
-      <div style="display:flex;justify-content:space-between;width:100%;margin-top:6px;font-size:12px;color:#71767b;"><span>0</span><span>714M cap</span></div>
-      <div style="margin-top:12px;font-size:13px;color:#f91880;">⚠️ Lowest since 1983</div>
+    <h2>MY DIET</h2>
+    <div class="macro-grid">
+      <div class="macro-item"><div class="num">144</div><div class="lbl">Protein</div></div>
+      <div class="macro-item"><div class="num">172</div><div class="lbl">Carbs</div></div>
+      <div class="macro-item"><div class="num">115</div><div class="lbl">Fats</div></div>
+      <div class="macro-item"><div class="num">2,300</div><div class="lbl">Kcal</div></div>
     </div>
   </div>
-</div>
-<div class="grid">
-  <div class="card full-width">
-    <h2>📰 Iran War & Energy News</h2>
-    <div id="iranNews" style="display:grid;grid-template-columns:1fr 1fr;gap:8px;max-height:500px;overflow-y:auto;"></div>
-  </div>
-</div>
-<div class="grid">
   <div class="card">
-    <h2>📈 WTI Crude Oil Chart</h2>
-    <div class="chart-container"><iframe loading="lazy" src="https://s.tradingview.com/widgetembed/?symbol=NYMEX%3ACL1!&interval=D&theme=dark&style=1"></iframe></div>
+    <h2>OIL</h2>
+    <div class="ticker-row"><span class="label">Brent</span><span class="value">$83.97</span><span class="change down">−2.2%</span></div>
+    <div class="ticker-row"><span class="label">WTI</span><span class="value">$81.19</span><span class="change down">−2.1%</span></div>
   </div>
   <div class="card">
-    <h2>📰 NVIDIA News</h2>
-    <div id="nvdaNews"></div>
+    <h2>CONFLICT</h2>
+    <div class="ticker-row"><span class="label">Strike Pause</span><span class="value" style="font-size:16px;font-weight:700;font-family:'Inter'">Day 4</span></div>
+    <div style="font-size:11px;color:#7a7068;text-transform:uppercase;letter-spacing:1px;margin-top:4px">Oman Hormuz Proposal ▸ White House Summit</div>
   </div>
 </div>
+
+<!-- Row 2: SPN Detail + Iran News (clickable cards) -->
+<div class="grid">
+  <div class="card w2 clickable" onclick="openOverlay('iran')">
+    <h2>⚔️ IRAN CONFLICT</h2>
+    <div style="font-size:13px;font-weight:600;margin-bottom:4px">Fourth Day of Fire Pause — Omani Joint Hormuz Proposal</div>
+    <div style="font-size:12px;color:#4a3f38;line-height:1.5">
+      Both Washington and Tehran maintained their tactical pause. Trump cited "very good talks" but warned the U.S. remains prepared to strike Iran's "Pickaxe Mountain" nuclear facility. Oman delivered a formal joint regional plan for the Strait of Hormuz modeled after the Malacca Strait. Netanyahu arrived at the White House today.
+      <div style="margin-top:6px;font-size:10px;text-transform:uppercase;letter-spacing:1px;color:#7a7068">Click for full brief →</div>
+    </div>
+  </div>
+  <div class="card clickable" onclick="openOverlay('nvda')">
+    <h2>🔵 NVIDIA</h2>
+    <div class="ticker-row"><span class="label">NVDA</span><span class="value" id="nvdaPrice">$196.51</span><span class="change down">−0.8%</span></div>
+    <div style="font-size:12px;margin-top:6px;line-height:1.5">
+      <strong>$5B Commitment</strong> to Safe Superintelligence (SSI)<br>
+      Launched Open Secure AI Alliance<br>
+      <span style="color:#7a7068;font-size:10px">Wall St target: ~$302.83 (+35% upside)</span>
+    </div>
+  </div>
+</div>
+
+<!-- Row 3: SPR Table -->
+<div class="grid">
+  <div class="card full">
+    <h2>STRATEGIC PETROLEUM RESERVES</h2>
+    <table class="spr-table">
+      <tr><th>Country</th><th>Inventory (M bbl)</th><th>Weekly Chg</th><th>Chg Since War</th><th>Capacity</th></tr>
+      <tr><td><strong>China</strong></td><td>1,400</td><td>0 (0.0%)</td><td>−2.1%</td><td>58.5%</td></tr>
+      <tr><td><strong>USA</strong></td><td>311.45</td><td>−5.05 (−1.60%)</td><td>−25.03%</td><td style="color:#b33a3a">43.6%</td></tr>
+      <tr><td><strong>Japan</strong></td><td>263.0</td><td>−0.30 (−0.10%)</td><td>−18.8%</td><td>81.1%</td></tr>
+    </table>
+    <div style="font-size:10px;text-transform:uppercase;letter-spacing:1px;color:#b33a3a;margin-top:8px">U.S. SPR at 311.45M bbl — lowest since 1983</div>
+  </div>
+</div>
+
+<!-- Row 4: News with click-to-expand -->
+<div class="grid">
+  <div class="card full">
+    <h2>IRAN WAR & ENERGY NEWS</h2>
+    <div class="news-list" id="newsList"></div>
+  </div>
+</div>
+
+<!-- Row 5: Infrastructure / Cyber -->
+<div class="grid">
+  <div class="card full">
+    <h2>INFRASTRUCTURE & CYBERSECURITY</h2>
+    <div style="font-size:12px;line-height:1.6">
+      <strong>Diplomatic Window Scans:</strong> With active kinetic strikes paused while envoys evaluate Oman's Hormuz proposal, state-backed cyber units are conducting wide-spectrum reconnaissance sweeps across Western cloud infrastructure.<br><br>
+      <strong>Arch Linux (omarchy) Node Sec:</strong> If editing proxy tables or updating Nginx deployment containers via standard <strong>vi</strong> calls, ensure SSH authentication remains strictly locked behind cryptographic key pairs and restrict internal staging containers from public ingress points.
+    </div>
+  </div>
+</div>
+
+<!-- Overlay -->
+<div class="overlay" id="overlay">
+  <div class="overlay-content">
+    <button class="close" onclick="closeOverlay()">✕</button>
+    <div id="overlayBody"></div>
+  </div>
+</div>
+
 <script>
-document.getElementById('currentDate').textContent=new Date().toLocaleString('en-US',{weekday:'long',year:'numeric',month:'long',day:'numeric',hour:'2-digit',minute:'2-digit',timeZoneName:'short'});
-const newsData=[{title:"As U.S. Pauses Strikes, Iran Is No Rush to Resume Cease-Fire Talks",link:"https://www.nytimes.com/2026/07/28/world/middleeast/iran-war-us-trump.html",date:"Jul 28"},{title:"Ukraine's Strike on an Iranian Ship Could Bring Two Wars Closer",link:"https://www.nytimes.com/2026/07/28/world/middleeast/iran-ukraine-ship-strikes-caspian.html",date:"Jul 28"},{title:"How the Iran-Backed Houthis Cornered Saudi Arabia",link:"https://www.nytimes.com/2026/07/27/world/middleeast/houthis-saudi-arabia-iran-war.html",date:"Jul 27"},{title:"Saudis Blame Iran-Backed Militias for Drone Attacks",link:"https://www.nytimes.com/2026/07/27/world/middleeast/saudi-arabia-drone-attacks-iran.html",date:"Jul 27"},{title:"Iran War Making Asia's Street Food More Expensive",link:"https://www.nytimes.com/2026/07/27/world/asia/iran-war-food-prices.html",date:"Jul 27"},{title:"Cuba, Lacking Fuel, Relies on Ingenuity to Defy Blockade",link:"https://www.nytimes.com/2026/07/27/world/americas/trump-oil-gas-cuba-havana.html",date:"Jul 27"},{title:"Trump Holds Off on Major War Escalation Against Iran",link:"https://www.nytimes.com/2026/07/27/world/middleeast/trump-iran-war-advisers.html",date:"Jul 27"},{title:"Southeast Asian Resorts Suffer as Iran War Keeps Tourists Away",link:"https://www.nytimes.com/2026/07/28/world/asia/iran-war-tourism-impact.html",date:"Jul 28"}];
-const nvdaN=[{title:"NVIDIA Announces New AI Chip Amid Market Volatility",src:"Reuters"},{title:"Analysts Raise NVIDIA Price Target on AI Demand",src:"Bloomberg"},{title:"NVIDIA Data Center Revenue Surges 120% YoY",src:"CNBC"},{title:"Supply Chain Constraints Easing for NVIDIA GPUs",src:"The Verge"},{title:"NVIDIA Partners with Major Cloud Providers",src:"TechCrunch"}];
-const nc=document.getElementById('iranNews');newsData.forEach(i=>{const d=document.createElement('div');d.className='news-item';d.innerHTML='<div class="news-title"><a href="'+i.link+'" target="_blank">'+i.title+'</a></div><div class="news-source">'+i.date+' • NYTimes</div>';nc.appendChild(d)});
-const nn=document.getElementById('nvdaNews');nvdaN.forEach(i=>{const d=document.createElement('div');d.className='news-item';d.innerHTML='<div class="news-title">'+i.title+'</div><div class="news-source">'+i.src+'</div>';nn.appendChild(d)});
-async function fP(){const s=[{id:'wtiPrice',ch:'wtiChange',s:'CL=F'},{id:'brentPrice',ch:'brentChange',s:'BZ=F'},{id:'nvdaPrice',ch:'nvdaChange',s:'NVDA'}];for(const x of s){try{const r=await fetch('https://query1.finance.yahoo.com/v8/finance/chart/'+x.s+'?range=1d&interval=1d');const d=await r.json();const q=d.chart.result[0].meta;const p=q.regularMarketPrice;const pc=q.chartPreviousClose;const c=p-pc;const cp=c/pc*100;document.getElementById(x.id).textContent='$'+p.toFixed(2);const e=document.getElementById(x.ch);e.textContent=(c>=0?'+':'')+c.toFixed(2)+' ('+(cp>=0?'+':'')+cp.toFixed(2)+'%)';e.className='change '+(c>=0?'up':'down')}catch(e){document.getElementById(x.id).textContent='--'}}}
-fP();setInterval(fP,60000);
+document.getElementById('currentDate').textContent = new Date().toLocaleString('en-US',{weekday:'short',year:'numeric',month:'short',day:'numeric',hour:'2-digit',minute:'2-digit',timeZoneName:'short'});
+
+const newsItems = [
+  {title:"U.S.-Iran Strike Pause Enters Day 4 — Trump Cites 'Good Talks' Ahead of Netanyahu Summit", summary:"President Trump voiced optimism on Air Force One and in a Fox & Friends interview, citing 'very good talks,' though he warned the U.S. remains prepared to strike Iran's underground 'Pickaxe Mountain' nuclear facility, bridges, and power infrastructure if a final deal collapses. Netanyahu arrived at the White House for critical talks on Iranian nuclear capabilities. Israeli Defense Minister Israel Katz publicly confirmed that U.S. warplanes used Israeli airbases during recent bombing runs.", link:"https://www.nytimes.com/2026/07/28/world/middleeast/iran-war-us-trump.html", tag:"IRAN"},
+  {title:"Oman Presents Joint Hormuz Management Proposal to Tehran", summary:"Oman delivered a formal proposal to Tehran for a joint regional mechanism to manage the Strait of Hormuz, modeled after the Strait of Malacca. The plan would utilize voluntary user contributions rather than unilateral Iranian control or mandatory toll collection, potentially breaking the diplomatic deadlock.", link:"https://www.nytimes.com/2026/07/28/world/middleeast/iran-war-us-trump.html", tag:"IRAN"},
+  {title:"Iran Rejects Compensation Plan, Threatens Hormuz Ban", summary:"Iran's joint military command rejected Trump's plan to use frozen Iranian assets to compensate damaged commercial ships. They warned that any nation or company accepting frozen funds as compensation will be permanently banned from transiting the Strait of Hormuz.", link:"https://www.nytimes.com/2026/07/28/world/middleeast/iran-war-us-trump.html", tag:"IRAN"},
+  {title:"Brent Crude Drops 2.2% to $83.97 — De-escalation Extends", summary:"Brent crude dropped 2.2% to $83.97/bbl, extending its retreat from last week's $102 peak as traders price in diplomatic progress. WTI extended losses near $81.19/bbl. Despite crude falling nearly 10% over two sessions, GasBuddy notes RBOB wholesale gasoline is down modestly due to regional refining constraints holding retail fuel averages near $4.00/gallon.", link:"https://www.nytimes.com/2026/07/28/world/middleeast/iran-war-us-trump.html", tag:"OIL"},
+  {title:"Ukraine Strikes Iranian Ship in Caspian — Two Wars Converge", summary:"Ukraine's strike on an Iranian ship in the Caspian Sea represents an unusually direct encounter between two countries that have been on opposite sides for years, potentially bringing the Ukraine-Russia and U.S.-Iran wars closer together.", link:"https://www.nytimes.com/2026/07/28/world/middleeast/iran-ukraine-ship-strikes-caspian.html", tag:"IRAN"},
+  {title:"NVIDIA Commits $5B to Safe Superintelligence (SSI)", summary:"NVIDIA officially announced a $5 billion investment in Safe Superintelligence (SSI), the AI safety venture co-founded by former OpenAI chief scientist Ilya Sutskever, cementing its involvement in advanced AI governance and safety research.", link:"#", tag:"NVDA"},
+  {title:"NVIDIA Launches Open Secure AI Alliance", summary:"NVIDIA helped launch the Open Secure AI Alliance, a new industry coalition focused on safeguarding open-source AI architectures and setting global cybersecurity benchmarks for enterprise model deployments. NVDA traded at $196.51 with Wall St consensus targets maintaining a 35% upside valuation (~$302.83).", link:"#", tag:"NVDA"},
+  {title:"Houthis Corner Saudi Arabia Into New Conflict", summary:"The Iranian-backed Houthi militia in Yemen has seized on a vulnerable moment for neighboring Saudi Arabia. The group hopes to force political concessions in Yemen amid the broader regional turmoil.", link:"https://www.nytimes.com/2026/07/27/world/middleeast/houthis-saudi-arabia-iran-war.html", tag:"IRAN"},
+  {title:"Iran War Driving Up Food Costs Across Asia", summary:"The Iran War is making Asia's street food more expensive as oil price spikes drive up food costs across the region, hitting the most vulnerable populations hardest.", link:"https://www.nytimes.com/2026/07/27/world/asia/iran-war-food-prices.html", tag:"OIL"},
+  {title:"State-Backed Cyber Units Conducting Reconnaissance During Diplomatic Window", summary:"With active kinetic strikes paused while diplomatic envoys evaluate Oman's Hormuz proposal, state-backed cyber units are conducting wide-spectrum reconnaissance sweeps across Western cloud infrastructure. Ensure SSH authentication remains locked behind cryptographic key pairs.", link:"#", tag:"CYBER"}
+];
+
+const nl = document.getElementById('newsList');
+newsItems.forEach((item,i) => {
+  const d = document.createElement('div');
+  d.className = 'news-item';
+  d.innerHTML = `<div class="ntitle">${item.title}</div><div class="nmeta">${item.tag} · Click to expand</div>`;
+  d.onclick = () => openNewsOverlay(i);
+  nl.appendChild(d);
+});
+
+function openNewsOverlay(i) {
+  const item = newsItems[i];
+  document.getElementById('overlayBody').innerHTML = `
+    <h2>${item.title}</h2>
+    <p>${item.summary}</p>
+    <p style="margin-top:16px"><a href="${item.link}" target="_blank">Read full article →</a></p>
+  `;
+  document.getElementById('overlay').classList.add('active');
+}
+
+function openOverlay(section) {
+  let html = '';
+  if (section === 'iran') {
+    html = `
+      <h2>Iran Conflict Brief — Jul 28</h2>
+      <p><strong>Fourth Day of Fire Pause:</strong> Both Washington and Tehran maintained their tactical pause for a fourth straight day. President Trump voiced optimism, citing "very good talks," though he warned the U.S. remains prepared to strike Iran's underground "Pickaxe Mountain" nuclear facility, bridges, and power infrastructure if a final deal collapses.</p>
+      <p><strong>Oman's Joint Hormuz Proposal:</strong> Oman delivered a formal proposal to Tehran for a joint regional mechanism to manage the Strait of Hormuz modeled after the Strait of Malacca, utilizing voluntary user contributions rather than unilateral Iranian control or mandatory toll collection.</p>
+      <p><strong>Tehran's Counter-Threat:</strong> Iran's joint military command rejected Trump's plan to use frozen Iranian assets to compensate damaged commercial ships, warning that any nation or company accepting frozen funds as compensation will be permanently banned from transiting Hormuz.</p>
+      <p><strong>White House Summit:</strong> Israeli PM Benjamin Netanyahu arrived at the White House today for critical talks on Iranian nuclear capabilities. Israeli Defense Minister Israel Katz publicly confirmed that U.S. warplanes used Israeli airbases during recent bombing runs against mainland Iranian targets.</p>
+    `;
+  } else if (section === 'nvda') {
+    html = `
+      <h2>NVIDIA (NVDA) — $196.51</h2>
+      <p><strong>$5 Billion Commitment to Safe Superintelligence:</strong> NVIDIA officially announced a $5 billion investment in Safe Superintelligence (SSI), the AI safety venture co-founded by former OpenAI chief scientist Ilya Sutskever, cementing its involvement in advanced AI governance and safety research.</p>
+      <p><strong>Open Secure AI Alliance Launch:</strong> NVIDIA helped launch the Open Secure AI Alliance, a new industry coalition focused on safeguarding open-source AI architectures and setting global cybersecurity benchmarks for enterprise model deployments.</p>
+      <p><strong>Price Action:</strong> Traded down to $196.51, tracking a broader global semiconductor market pullback caused by knee-jerk macro reactions to Chinese domestic chip equipment progress, even as Wall Street consensus targets maintain a 35% upside valuation (~$302.83).</p>
+    `;
+  }
+  document.getElementById('overlayBody').innerHTML = html;
+  document.getElementById('overlay').classList.add('active');
+}
+
+function closeOverlay() {
+  document.getElementById('overlay').classList.remove('active');
+}
+
+document.getElementById('overlay').onclick = function(e) {
+  if (e.target === this) closeOverlay();
+};
+
+// Live prices from Yahoo Finance
+async function fetchPrices() {
+  try {
+    const res = await fetch('https://query1.finance.yahoo.com/v8/finance/chart/NVDA?range=1d&interval=1d');
+    const data = await res.json();
+    const q = data.chart.result[0].meta;
+    const p = q.regularMarketPrice;
+    const pc = q.chartPreviousClose;
+    const c = p - pc;
+    const cp = (c/pc*100).toFixed(1);
+    document.getElementById('nvdaPrice').textContent = '$' + p.toFixed(2);
+    const el = document.querySelector('#nvdaPrice').parentElement.nextElementSibling;
+    if (el) {
+      el.textContent = (c >= 0 ? '+' : '') + c.toFixed(2) + '%';
+      el.className = 'change ' + (c >= 0 ? 'up' : 'down');
+    }
+  } catch(e) {}
+}
+fetchPrices();
 </script>
 </body>
 </html>
