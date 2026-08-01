@@ -9,55 +9,54 @@
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&display=swap');
-:root{--bg:#e8e0d5;--card:#ddd5c8;--card-hover:#d5cdbf;--text:#2c2820;--text2:#6b6559;--acc:#9e8f7a;--red:#c0392b;--green:#27ae60;--yellow:#d4a017;--tag:#d5cdbf}
-.dark{--bg:#1a1815;--card:#25221e;--card-hover:#2f2b26;--text:#e8e0d5;--text2:#9e9487;--acc:#7a6f60;--tag:#2f2b26}
-body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);transition:background .3s,color .3s}
-.anton{font-family:'Anton',sans-serif}
-.card{background:var(--card);cursor:pointer;transition:background .2s,transform .15s;display:flex;flex-direction:column;position:relative}
+:root{--bg:#e8e0d5;--card:#ddd5c8;--card-hover:#d5cdbf;--text:#2c2820;--text2:#6b6559;--acc:#9e8f7a;--red:#c0392b;--green:#27ae60;--yellow:#d4a017;--tagbg:#d5cdbf}
+.dark{--bg:#1a1815;--card:#25221e;--card-hover:#2f2b26;--text:#e8e0d5;--text2:#9e9487;--acc:#7a6f60;--tagbg:#2f2b26}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);margin:0;padding:0;min-height:100vh;transition:background .3s,color .3s}
+.anton{font-family:'Anton',sans-serif;letter-spacing:.5px}
+.card{background:var(--card);cursor:pointer;transition:background .2s,transform .15s;display:flex;flex-direction:column;position:relative;overflow:hidden}
 .card:hover{background:var(--card-hover)}
-.card:active{transform:scale(.99)}
-.card .lu{position:absolute;bottom:6px;right:10px;font-size:8px;letter-spacing:1px;text-transform:uppercase;color:var(--text2);opacity:0;transition:opacity .2s}
-.card:hover .lu{opacity:.6}
-.t{background:var(--tag);color:var(--text2);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;padding:2px 6px;display:inline-block}
-.sr{display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(--acc);opacity:.5;font-size:11px}
+.card:active{transform:scale(.98)}
+.tg{background:var(--tagbg);color:var(--text2);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;padding:2px 7px;display:inline-block}
+.sr{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--acc);opacity:.6;font-size:12px}
 .sr:last-child{border:none}
-.ni{padding:5px 0;border-bottom:1px solid var(--acc);opacity:.5;font-size:12px}
+.ni{padding:6px 0;border-bottom:1px solid var(--acc);opacity:.6;font-size:12px;line-height:1.3}
 .ni:last-child{border:none}
-.nm{font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--text2);margin-top:1px}
-.spr-b{width:100%;height:10px;background:var(--tag);margin-top:6px;overflow:hidden}
-.spr-f{height:100%;background:var(--yellow)}
-.ca{display:flex;align-items:center;justify-content:center;gap:16px;min-height:70px}
-.cr{position:relative;width:50px;height:50px}
-.cr i{position:absolute;font-size:14px;color:var(--acc)}
-.cr i:nth-child(1){top:50%;left:50%;transform:translate(-50%,-50%);font-size:20px}
-.cr i:nth-child(2){top:0;left:50%;transform:translateX(-50%)}
-.cr i:nth-child(3){top:50%;right:0;transform:translateY(-50%)}
-.cr i:nth-child(4){bottom:0;left:50%;transform:translateX(-50%)}
-.cr i:nth-child(5){top:50%;left:0;transform:translateY(-50%)}
+.nm{font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--text2);margin-top:2px}
+.sprb{width:100%;height:8px;background:var(--tagbg);margin-top:6px;overflow:hidden;border-radius:4px}
+.sprf{height:100%;background:var(--yellow);border-radius:4px}
+.ca{display:flex;align-items:center;justify-content:center;gap:14px;min-height:60px;flex:1}
+.cr{position:relative;width:44px;height:44px}
+.cr i{position:absolute;font-size:13px;color:var(--acc)}
+.cr i:nth-child(1){top:50%;left:50%;transform:translate(-50%,-50%);font-size:18px}
+.cr i:nth-child(2){top:2px;left:50%;transform:translateX(-50%)}
+.cr i:nth-child(3){top:50%;right:2px;transform:translateY(-50%)}
+.cr i:nth-child(4){bottom:2px;left:50%;transform:translateX(-50%)}
+.cr i:nth-child(5){top:50%;left:2px;transform:translateY(-50%)}
 .cpd{display:flex;gap:3px;align-items:center}
 .cpd .d{width:5px;height:5px;background:var(--green);border-radius:50%}
-.cpt{font-family:'Anton',sans-serif;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--text2);margin-left:6px}
-.ov{background:rgba(0,0,0,.5);position:fixed;inset:0;z-index:1000;display:none;justify-content:center;align-items:flex-start;padding:20px;overflow-y:auto}
-.ov.active{display:flex}
-.mc{background:var(--card);padding:30px;width:100%;max-width:900px;margin:20px auto;position:relative}
-.mcl{position:absolute;top:12px;right:16px;font-size:22px;cursor:pointer;color:var(--text2);border:none;background:none}
-.mcl:hover{color:var(--text)}
-.mc h2{font-family:'Anton',sans-serif;font-size:22px;letter-spacing:2px;text-transform:uppercase;margin-bottom:16px}
-.mc p{font-size:14px;line-height:1.6;color:var(--text2);margin-bottom:10px;max-width:600px;margin-left:auto;margin-right:auto}
+.cpt{font-family:'Anton',sans-serif;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--text2);margin-left:6px}.nopad{padding:0!important}
+.ovr{position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,.6);display:none;overflow-y:auto}
+.ovr.active{display:block}
+.mcw{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:12px}
+.mcb{background:var(--card);width:100%;max-width:1100px;padding:40px 28px;position:relative;margin:20vh auto}
+.mcb p{font-size:15px;line-height:1.7;margin-bottom:14px}
+.mcb .mct{font-family:'Anton',sans-serif;font-size:26px;letter-spacing:2px;text-transform:uppercase;margin-bottom:24px;text-align:center}
+.mxcb{position:absolute;top:14px;right:20px;font-size:24px;cursor:pointer;color:var(--text2);border:none;background:none;font-family:inherit;z-index:10}
+.mxcb:hover{color:var(--text)}
 </style>
+<script>tailwind.config={theme:{extend:{screens:{xs:'480px'}}}}</script>
 </head>
 <body>
 
-<div class="max-w-[1400px] mx-auto px-2 sm:px-4 py-4">
-<div id="grid" class="grid grid-cols-1 sm:grid-cols-6 gap-3"></div>
-</div>
+<div id="grid" class="grid grid-cols-1 sm:grid-cols-6 gap-2 sm:gap-3 p-1 sm:p-2 max-w-[1440px] mx-auto"></div>
 
-<div class="ov" id="modal">
-<div class="mc">
-<button class="mcl" id="mcl">&#10005;</button>
-<h2 id="mt" class="text-center"></h2>
-<div id="mb" class="text-center"></div>
+<div class="ovr" id="modal">
+<div class="mcw">
+<div class="mcb">
+<button class="mxcb" id="mcl">&#10005;</button>
+<div class="mct" id="mt"></div>
+<div id="mb" style="max-width:700px;margin:0 auto;text-align:center;color:var(--text2)"></div>
+</div>
 </div>
 </div>
 
@@ -66,20 +65,50 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);trans
 var ts=new Date().toLocaleString('en-US',{weekday:'short',month:'short',day:'numeric',hour:'2-digit',minute:'2-digit',timeZone:'America/Sao_Paulo'});
 
 var blocks=[
-{g:"sm:col-span-4 sm:row-span-2",c:'<div class="ca"><div class="cr"><i class="fas fa-shield-halved"></i><i class="fas fa-oil-can"></i><i class="fas fa-microchip"></i><i class="fas fa-robot"></i><i class="fas fa-ship"></i></div><div class="cpd"><div class="d"></div><div class="d"></div><div class="d"></div><span class="cpt">Active</span></div></div><div class="text-xs leading-relaxed mt-1" style="color:var(--text2)">Thu Jul 30 &mdash; US strikes Iran day 5. Brent $88.51 WTI $84.18 NVDA $190.67. Fed decision. SPR 311.4M bbl.</div>',m:"<p><strong>Thu Jul 30</strong> — US entered 5th day of airstrikes. Netanyahu-Trump summit continues. Hormuz blockade plans discussed.</p><p>Brent $88.51 · WTI $84.18 · NVDA $190.67 (-3.42%). SPR 311.4M bbl — 43yr low.</p>",ti:"CORE SYSTEM",ic:"microchip"},
-{g:"sm:col-span-2 sm:row-span-2",c:'<div class="mb-2"><span class="t" style="background:var(--red);color:#1a1815">STRIKES DAY 5</span></div><div class="sr"><span>US Strikes</span><span>Day 5</span></div><div class="sr"><span>IRGC</span><span>Jordan attack</span></div><div class="sr"><span>Summit</span><span>Trump-Netanyahu</span></div><div class="sr"><span>Hormuz</span><span>Blockade plans</span></div>',m:"<p>Day 5 US airstrikes. IRGC attack on Jordan. Summit discussed Hormuz blockade.</p>",ti:"IRAN CONFLICT",ic:"explosion"},
-{g:"sm:col-span-2",c:'<div class="anton text-5xl leading-none tracking-wider" style="color:var(--green)">$88.51</div><div class="text-[10px] tracking-widest uppercase mt-1" style="color:var(--text2)">Brent / bbl</div><div class="mt-1"><span class="anton text-lg" style="color:var(--red)">+0.5%</span></div>',m:"<p>Brent $88.51 +0.5%</p>",ti:"BRENT CRUDE",ic:"oil-can"},
-{g:"sm:col-span-2",c:'<div class="anton text-5xl leading-none tracking-wider" style="color:var(--green)">$84.18</div><div class="text-[10px] tracking-widest uppercase mt-1" style="color:var(--text2)">WTI / bbl</div><div class="mt-1"><span class="anton text-lg" style="color:var(--green)">+6.2%</span></div>',m:"<p>WTI $84.18 +6.2%</p>",ti:"WTI CRUDE",ic:"gas-pump"},
-{g:"sm:col-span-2",c:'<div class="anton text-5xl leading-none tracking-wider" style="color:var(--red)">$190.67</div><div class="text-[10px] tracking-widest uppercase mt-1" style="color:var(--text2)">NASDAQ</div><div class="mt-1"><span class="anton text-lg" style="color:var(--red)">-3.42%</span></div>',m:"<p>NVDA $190.67 -3.42%</p>",ti:"NVDA",ic:"microchip"},
-{g:"sm:col-span-2",c:'<div class="grid grid-cols-2 gap-2 mt-1"><div class="text-center p-1.5" style="background:var(--tag)"><div class="anton text-2xl leading-none" style="color:var(--green)">203</div><div class="text-[7px] tracking-widest uppercase" style="color:var(--text2)">Pro</div></div><div class="text-center p-1.5" style="background:var(--tag)"><div class="anton text-2xl leading-none" style="color:var(--yellow)">87</div><div class="text-[7px] tracking-widest uppercase" style="color:var(--text2)">Carbs</div></div><div class="text-center p-1.5" style="background:var(--tag)"><div class="anton text-2xl leading-none" style="color:var(--yellow)">62</div><div class="text-[7px] tracking-widest uppercase" style="color:var(--text2)">Fat</div></div><div class="text-center p-1.5" style="background:var(--tag)"><div class="anton text-2xl leading-none" style="color:var(--green)">1,847</div><div class="text-[7px] tracking-widest uppercase" style="color:var(--text2)">Cals</div></div></div>',m:"<p>Protein 203g · Carbs 87g · Fat 62g · Cals 1,847</p>",ti:"DAILY MACROS",ic:"chart-line"},
-{g:"sm:col-span-2",c:'<div class="mb-1"><span class="t" style="background:var(--green);color:#1a1815">PUSH DAY</span></div><div class="flex justify-between py-1 border-b border-[var(--acc)] opacity-50 text-xs"><span>Bench Press</span><span>4x8</span></div><div class="flex justify-between py-1 border-b border-[var(--acc)] opacity-50 text-xs"><span>OHP</span><span>4x10</span></div><div class="flex justify-between py-1 border-b border-[var(--acc)] opacity-50 text-xs"><span>Lat Raise</span><span>3x15</span></div>',m:"<p>Bench 4x8 · OHP 4x10 · Lat Raise 3x15</p>",ti:"BRUTE LOG",ic:"dumbbell"},
-{g:"sm:col-span-2",c:'<div class="anton text-5xl leading-none tracking-wider" style="color:var(--yellow)">311.4M</div><div class="text-[10px] tracking-widest uppercase mt-1" style="color:var(--text2)">SPR bbl</div><div class="spr-b"><div class="spr-f" style="width:45%"></div></div>',m:"<p>SPR 311.4M bbl — 43yr low</p>",ti:"SPR ALERT",ic:"oil-can"},
-{g:"sm:col-span-3",c:'<div class="overflow-y-auto max-h-[180px]" id="ln1"></div>',m:"<p>Iran news</p>",ti:"IRAN NEWS",ic:"newspaper"},
-{g:"sm:col-span-3",c:'<div class="overflow-y-auto max-h-[180px]" id="ln2"></div>',m:"<p>NVDA news</p>",ti:"AI &amp; NVDA NEWS",ic:"chart-bar"}
+{g:"sm:col-span-4 sm:row-span-2",
+ ic:"microchip",ti:"CORE SYSTEM",
+ c:'<div class="ca flex-col sm:flex-row gap-2 sm:gap-3"><div class="cr"><i class="fas fa-shield-halved"></i><i class="fas fa-oil-can"></i><i class="fas fa-microchip"></i><i class="fas fa-robot"></i><i class="fas fa-ship"></i></div><div class="cpd"><div class="d"></div><div class="d"></div><div class="d"></div><span class="cpt">Active</span></div></div><div class="text-xs sm:text-sm leading-relaxed mt-1 sm:mt-2" style="color:var(--text2)">Thu Jul 30 &mdash; US strikes Iran day 5. Brent $88.51 (+0.5%) &middot; WTI $84.18 (+6.2%) &middot; NVDA $190.67 (-3.4%). Fed decision today. Netanyahu-Trump summit continues. Hormuz blockade plans discussed. SPR at 311.4M bbl.</div>',
+ m:"<p><strong>Thursday Jul 30</strong> &mdash; The US entered its 5th consecutive day of airstrikes against Iran. The Netanyahu-Trump White House summit continues, with joint naval patrols and Hormuz blockade contingency plans reportedly discussed.</p><p><strong>Oil Markets:</strong> Brent crude <strong>$88.51/bbl (+0.5%)</strong>. WTI surged <strong>6.2% to $84.18/bbl</strong> as geopolitical risk snapped back. Markets bracing for the Fed's July 30 rate decision.</p><p><strong>NVIDIA (NVDA)</strong> closed at <strong>$190.67 (-3.42%)</strong> amid semiconductor selloff. ARK Invest bought 79K shares worth ~$15.5M on the dip.</p><p><strong>SPR Alert:</strong> US Strategic Petroleum Reserve at <strong>311.4M bbl</strong> &mdash; 43-year low. Infrastructure reaching end of life.</p>"},
+{g:"sm:col-span-2 sm:row-span-2",
+ ic:"explosion",ti:"IRAN CONFLICT",
+ c:'<div class="mb-2"><span class="tg" style="background:var(--red);color:#1a1815">STRIKES DAY 5</span> <span class="tg" style="background:var(--yellow);color:#1a1815">DIPLOMACY COLLAPSED</span></div><div class="sr"><span>US Strikes</span><span>Day 5 — ongoing</span></div><div class="sr"><span>IRGC</span><span>Missile attack on Jordan</span></div><div class="sr"><span>Netanyahu-Trump</span><span>Summit continues</span></div><div class="sr"><span>Hormuz</span><span>Blockade plans discussed</span></div><div class="sr"><span>Oman Proposal</span><span>On hold</span></div><div class="mt-1 text-[10px] tracking-wider uppercase" style="color:var(--red)">Pentagon confirms Day 5 airstrikes</div>',
+ m:"<p><strong>US Airstrikes Enter Day 5:</strong> The Pentagon confirmed a fifth wave of airstrikes against Iranian targets overnight. The sustained campaign follows IRGC's ballistic missile attack on a US base in Jordan earlier this week.</p><p><strong>White House Summit:</strong> PM Netanyahu and President Trump discussed expanded military cooperation, joint naval patrols, and contingency plans for a Strait of Hormuz closure scenario.</p><p><strong>Hormuz Diplomacy:</strong> Oman's joint management proposal remains on hold as fighting continues.</p>"},
+{g:"sm:col-span-2",
+ ic:"oil-can",ti:"BRENT CRUDE",
+ c:'<div class="anton text-4xl sm:text-5xl leading-none" style="color:var(--green)">$88.51</div><div class="text-[11px] tracking-[2px] uppercase mt-1" style="color:var(--text2)">Brent / bbl</div><div class="mt-1"><span class="anton text-lg" style="color:var(--red)">+0.5%</span></div><div class="mt-auto pt-2"><div class="sr"><span>Previous Close</span><span>$88.09</span></div><div class="sr"><span>Weekly High</span><span>$102.00</span></div></div>',
+ m:"<p><strong>Brent Crude: $88.51/bbl (+0.5%)</strong></p><p>Brent edged higher as the US launched airstrikes against Iran for the fifth consecutive day, keeping Strait of Hormuz risk premiums firmly priced in. Previous close was $88.09. Weekly high at $102.</p>"},
+{g:"sm:col-span-2",
+ ic:"gas-pump",ti:"WTI CRUDE",
+ c:'<div class="anton text-4xl sm:text-5xl leading-none" style="color:var(--green)">$84.18</div><div class="text-[11px] tracking-[2px] uppercase mt-1" style="color:var(--text2)">WTI / bbl</div><div class="mt-1"><span class="anton text-lg" style="color:var(--green)">+6.2%</span></div><div class="mt-auto pt-2"><div class="sr"><span>Previous Close</span><span>$79.26</span></div><div class="sr"><span>Retail Gas</span><span>~$4.00/gal</span></div></div>',
+ m:"<p><strong>WTI Crude: $84.18/bbl (+6.2%)</strong></p><p>WTI surged sharply from a prior close of $79.26 as the path of least resistance flipped decisively upward. Five-session rally resumes. Retail gasoline averages near $4.00/gallon nationwide.</p>"},
+{g:"sm:col-span-2",
+ ic:"microchip",ti:"NVDA",
+ c:'<div class="anton text-4xl sm:text-5xl leading-none" style="color:var(--red)">$190.67</div><div class="text-[11px] tracking-[2px] uppercase mt-1" style="color:var(--text2)">NASDAQ</div><div class="mt-1"><span class="anton text-lg" style="color:var(--red)">-3.42%</span></div><div class="mt-auto pt-2"><div class="sr"><span>ARK Buy</span><span>79K shares</span></div><div class="sr"><span>Consensus Target</span><span style="color:var(--green)">$302 (+37%)</span></div></div>',
+ m:"<p><strong>NVIDIA: $190.67 (-3.42%)</strong></p><p>NVDA slipped on macroeconomic uncertainty ahead of the Fed decision and circular financing concerns in the AI sector.</p><p><strong>ARK Invest Buys the Dip:</strong> Cathie Wood's ARK purchased 78,965 NVDA shares worth ~$15.5M, signaling confidence in the AI chip leader.</p><p><strong>Wall Street Consensus:</strong> Maintains 37% upside (~$302). Open Secure AI Alliance launched with NVIDIA as founding partner.</p>"},
+{g:"sm:col-span-2",
+ ic:"chart-line",ti:"DAILY MACROS",
+ c:'<div class="grid grid-cols-2 gap-2 mt-1"><div class="text-center p-2" style="background:var(--tagbg)"><div class="anton text-2xl leading-none" style="color:var(--green)">203</div><div class="text-[8px] tracking-[2px] uppercase mt-1" style="color:var(--text2)">Protein</div></div><div class="text-center p-2" style="background:var(--tagbg)"><div class="anton text-2xl leading-none" style="color:var(--yellow)">87</div><div class="text-[8px] tracking-[2px] uppercase mt-1" style="color:var(--text2)">Carbs</div></div><div class="text-center p-2" style="background:var(--tagbg)"><div class="anton text-2xl leading-none" style="color:var(--yellow)">62</div><div class="text-[8px] tracking-[2px] uppercase mt-1" style="color:var(--text2)">Fat</div></div><div class="text-center p-2" style="background:var(--tagbg)"><div class="anton text-2xl leading-none" style="color:var(--green)">1,847</div><div class="text-[8px] tracking-[2px] uppercase mt-1" style="color:var(--text2)">Calories</div></div></div>',
+ m:"<p><strong>Daily Macros</strong></p><p>Protein: 203g &middot; Carbs: 87g &middot; Fat: 62g &middot; Calories: 1,847</p>"},
+{g:"sm:col-span-2",
+ ic:"dumbbell",ti:"BRUTE LOG",
+ c:'<div class="mb-2"><span class="tg" style="background:var(--green);color:#1a1815">PUSH DAY &mdash; DONE</span></div><div class="flex justify-between py-1.5 border-b border-[var(--acc)] opacity-60 text-xs"><span>Bench Press</span><span class="anton">4x8</span></div><div class="flex justify-between py-1.5 border-b border-[var(--acc)] opacity-60 text-xs"><span>Overhead Press</span><span class="anton">4x10</span></div><div class="flex justify-between py-1.5 border-b border-[var(--acc)] opacity-60 text-xs"><span>Lateral Raise</span><span class="anton">3x15</span></div><div class="anton text-[10px] tracking-[2px] uppercase mt-2" style="color:var(--yellow)">NEXT: PULL DAY</div>',
+ m:"<p><strong>Brute Log — Push Day Done</strong></p><p>Bench Press: 4x8 &middot; Overhead Press: 4x10 &middot; Lateral Raise: 3x15</p><p><strong>Next Session:</strong> Pull Day</p>"},
+{g:"sm:col-span-2",
+ ic:"oil-can",ti:"SPR ALERT",
+ c:'<div class="anton text-4xl sm:text-5xl leading-none" style="color:var(--yellow)">311.4M</div><div class="text-[11px] tracking-[2px] uppercase mt-1" style="color:var(--text2)">Strategic Petroleum Reserve</div><div class="sprb"><div class="sprf" style="width:43.6%"></div></div><div class="flex justify-between text-[9px] mt-0.5" style="color:var(--text2)"><span>0</span><span>714M cap</span></div><div class="mt-1 text-[10px] tracking-wider uppercase" style="color:var(--red)">43-year low &mdash; emergency drawdowns continue</div>',
+ m:"<p><strong>US Strategic Petroleum Reserve: 311.4M bbl</strong></p><p>43-year low. CNBC reports infrastructure reaching end of life with mechanical failures at 50-year-old caverns. China holds 1,400M bbl. Japan: 263M bbl. US weekly drawdown: -5.1M bbl (-1.6%).</p>"},
+{g:"sm:col-span-3",
+ ic:"newspaper",ti:"IRAN NEWS",
+ c:'<div class="overflow-y-auto max-h-[200px]" id="ln1"></div>',
+ m:"<p>Iran &amp; Energy News Feed</p>"},
+{g:"sm:col-span-3",
+ ic:"chart-bar",ti:"AI &amp; NVDA",
+ c:'<div class="overflow-y-auto max-h-[200px]" id="ln2"></div>',
+ m:"<p>AI &amp; NVIDIA News Feed</p>"}
 ];
 
-var nd1=[{t:"US-Saudi Jets Strike Iranian Proxies",d:"Jul 30"},{t:"Brent $88.51 Geopolitical Holds",d:"Jul 30"},{t:"WTI Surges 6.2% to $84.18",d:"Jul 30"},{t:"US Strikes Iran Fifth Day",d:"Jul 30"},{t:"Netanyahu-Trump Summit",d:"Jul 30"},{t:"SPR 311.4M 43yr Low",d:"Jul 30"},{t:"Fed Decision Today",d:"Jul 30"}];
-var nd2=[{t:"NVDA -3.42% at $190.67",s:"Bloomberg"},{t:"ARK Buys 79K shares $15.5M",s:"Investing"},{t:"Open Secure AI Alliance",s:"Reuters"},{t:"$1.4T AI Bet Paying Off",s:"TipRanks"},{t:"Circular Financing Risk",s:"Motley Fool"}];
+var nd1=[{t:"US-Saudi Jets Strike Iranian Proxies in Iraq",d:"Jul 30"},{t:"Brent $88.51 — Geopolitical Premium Holds as Strikes Enter Day 5",d:"Jul 30"},{t:"WTI Surges 6.2% to $84.18 — Five-Session Rally Resumes",d:"Jul 30"},{t:"US Strikes Iran for Fifth Day; Pentagon Confirms",d:"Jul 30"},{t:"Netanyahu-Trump Summit: Joint Naval Patrols, Hormuz Plans",d:"Jul 30"},{t:"SPR Drops to 311.4M bbl — 43-Year Low",d:"Jul 30"},{t:"Fed Decision Today — Oil Markets Brace for Rate Impact",d:"Jul 30"}];
+var nd2=[{t:"NVDA Slides 3.42% — Closes at $190.67",s:"Bloomberg"},{t:"ARK Invest Buys 79K NVDA Shares ~$15.5M",s:"Investing.com"},{t:"Open Secure AI Alliance Names NVIDIA Founding Partner",s:"Reuters"},{t:"Microsoft, Meta, Google Signal $1.4T AI Bet",s:"TipRanks"},{t:"Circular Financing Concerns Weigh on Semis",s:"Motley Fool"}];
 
 function rn(id,items){var e=document.getElementById(id);if(!e)return;var h='';for(var i=0;i<items.length;i++){h+='<div class="ni">'+items[i].t+'<div class="nm">'+(items[i].d||items[i].s||'')+'</div></div>'}e.innerHTML=h}
 rn('ln1',nd1);rn('ln2',nd2);
@@ -88,8 +117,10 @@ var g=document.getElementById('grid');
 for(var i=0;i<blocks.length;i++){
   var o=blocks[i];
   var d=document.createElement('div');
-  d.className='card p-3 sm:p-4 min-h-[100px] '+o.g;
-  d.innerHTML='<div class="flex items-center gap-2 mb-2"><i class="fas fa-'+o.ic+'" style="color:var(--acc);width:14px;text-align:center"></i><span class="anton text-[11px] tracking-[3px] uppercase" style="color:var(--text2)">'+o.ti+'</span></div><div class="flex-1 flex flex-col">'+o.c+'</div><div class="lu">'+ts+' BRT</div>';
+  d.className='card p-3 sm:p-4 min-h-[110px] '+o.g;
+  d.innerHTML='<div class="flex items-center gap-2 mb-2"><i class="fas fa-'+o.ic+'" style="color:var(--acc);width:14px"></i><span class="anton text-[11px] tracking-[3px] uppercase" style="color:var(--text2)">'+o.ti+'</span></div><div class="flex-1 flex flex-col">'+o.c+'</div><div class="absolute bottom-1.5 right-2 text-[8px] tracking-wider uppercase" style="color:var(--text2);opacity:0;transition:opacity .2s">'+ts+' BRT</div>';
+  d.onmouseenter=function(){this.querySelector('div:last-child').style.opacity='.6'};
+  d.onmouseleave=function(){this.querySelector('div:last-child').style.opacity='0'};
   d.onclick=(function(o){return function(){document.getElementById('mt').textContent=o.ti;document.getElementById('mb').innerHTML=o.m;document.getElementById('modal').classList.add('active');document.body.style.overflow='hidden'}})(o);
   g.appendChild(d);
 }
