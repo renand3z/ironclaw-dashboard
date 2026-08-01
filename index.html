@@ -4,102 +4,99 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>IronClaw Dashboard</title>
+<script src="https://cdn.tailwindcss.com"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
-* { margin:0; padding:0; box-sizing:border-box; }
-:root { --bg:#e8e0d5; --card:#ddd5c8; --card-hover:#d5cdbf; --text:#2c2820; --text-secondary:#6b6559; --accent:#9e8f7a; --alert-red:#c0392b; --alert-green:#27ae60; --alert-yellow:#d4a017; --tag-bg:#d5cdbf; --modal-overlay:rgba(44,40,32,0.7); }
-body.dark { --bg:#1a1815; --card:#25221e; --card-hover:#2f2b26; --text:#e8e0d5; --text-secondary:#9e9487; --accent:#7a6f60; --tag-bg:#2f2b26; --modal-overlay:rgba(0,0,0,0.7); }
-body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); padding:20px; transition:background .3s,color .3s; }
-.wrap { max-width:1400px; margin:0 auto; }
-.grid { display:grid; gap:16px; }
-@media (min-width:641px) { .grid { grid-template-columns:repeat(6,1fr); } .c4r2 { grid-column:span 4; grid-row:span 2; } .c2r2 { grid-column:span 2; grid-row:span 2; } .c2 { grid-column:span 2; } .c3 { grid-column:span 3; } }
-@media (max-width:640px) { .grid { grid-template-columns:1fr; } body { padding:12px; } }
-.block { background:var(--card); padding:20px; cursor:pointer; transition:background .2s,transform .15s; position:relative; display:flex; flex-direction:column; min-height:120px; }
-.block:hover { background:var(--card-hover); }
-.block:active { transform:scale(.99); }
-.block-title { font-family:'Anton',sans-serif; font-size:12px; letter-spacing:3px; text-transform:uppercase; color:var(--text-secondary); margin-bottom:12px; display:flex; align-items:center; gap:8px; }
-.block-title i { color:#9e8f7a; width:16px; text-align:center; }
-.block-content { flex:1; display:flex; flex-direction:column; }
-.big-num { font-family:'Anton',sans-serif; font-size:42px; line-height:1; text-transform:uppercase; letter-spacing:1px; }
-.grn { color:var(--alert-green); }
-.red { color:var(--alert-red); }
-.yel { color:var(--alert-yellow); }
-.lbl { font-family:'Inter',sans-serif; font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--text-secondary); margin-top:2px; }
-.tag { display:inline-block; font-size:9px; letter-spacing:1.5px; text-transform:uppercase; background:var(--tag-bg); padding:2px 6px; color:var(--text-secondary); }
-.sr { display:flex; justify-content:space-between; padding:5px 0; border-bottom:1px solid var(--accent); opacity:.5; font-size:11px; }
-.sr:last-child { border:none; }
-.news-list { flex:1; overflow-y:auto; max-height:200px; }
-.ni { padding:6px 0; border-bottom:1px solid var(--accent); opacity:.5; font-size:12px; }
-.ni:last-child { border:none; }
-.nm { font-size:9px; letter-spacing:1px; text-transform:uppercase; color:var(--text-secondary); margin-top:2px; }
-.spr-bar { width:100%; height:12px; background:var(--tag-bg); margin-top:8px; overflow:hidden; }
-.spr-fill { height:100%; background:var(--alert-yellow); }
-.mg { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:4px; }
-.mi { text-align:center; padding:6px; background:var(--tag-bg); }
-.mv { font-family:'Anton',sans-serif; font-size:26px; line-height:1; }
-.ml { font-size:8px; letter-spacing:2px; text-transform:uppercase; color:var(--text-secondary); margin-top:1px; }
-.ge { display:flex; justify-content:space-between; padding:4px 0; border-bottom:1px solid var(--accent); opacity:.5; font-size:11px; }
-.ge:last-child { border:none; }
-.gh { font-family:'Anton',sans-serif; font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--alert-yellow); margin:4px 0 1px 0; }
-.ca { flex:1; display:flex; align-items:center; justify-content:center; gap:16px; min-height:80px; }
-.cr { position:relative; width:60px; height:60px; }
-.cr i { position:absolute; font-size:16px; color:var(--accent); }
-.cr i:nth-child(1) { top:50%; left:50%; transform:translate(-50%,-50%); font-size:22px; }
-.cr i:nth-child(2) { top:0; left:50%; transform:translateX(-50%); }
-.cr i:nth-child(3) { top:50%; right:0; transform:translateY(-50%); }
-.cr i:nth-child(4) { bottom:0; left:50%; transform:translateX(-50%); }
-.cr i:nth-child(5) { top:50%; left:0; transform:translateY(-50%); }
-.cpd { display:flex; gap:4px; align-items:center; }
-.cpd .d { width:6px; height:6px; background:var(--alert-green); border-radius:50%; }
-.cpt { font-family:'Anton',sans-serif; font-size:9px; letter-spacing:3px; text-transform:uppercase; color:var(--text-secondary); margin-left:6px; }
-.lu { position:absolute; bottom:6px; right:10px; font-size:8px; letter-spacing:1px; text-transform:uppercase; color:var(--text-secondary); opacity:0; transition:opacity .2s; }
-.block:hover .lu { opacity:.6; }
-.modal { display:none; position:fixed; top:0; left:0; right:0; bottom:0; background:var(--modal-overlay); z-index:1000; justify-content:center; align-items:center; padding:20px; }
-.modal.active { display:flex; }
-.mc { background:var(--card); padding:30px; max-width:600px; width:100%; max-height:80vh; overflow-y:auto; position:relative; }
-.mcl { position:absolute; top:12px; right:16px; font-size:20px; cursor:pointer; color:var(--text-secondary); border:none; background:none; }
-.mcl:hover { color:var(--text); }
-.mc h2 { font-family:'Anton',sans-serif; font-size:22px; letter-spacing:2px; text-transform:uppercase; margin-bottom:16px; }
-.mc p { font-size:13px; line-height:1.5; color:var(--text-secondary); margin-bottom:10px; }
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&display=swap');
+:root{--bg:#e8e0d5;--card:#ddd5c8;--card-hover:#d5cdbf;--text:#2c2820;--text2:#6b6559;--acc:#9e8f7a;--red:#c0392b;--green:#27ae60;--yellow:#d4a017;--tag:#d5cdbf}
+.dark{--bg:#1a1815;--card:#25221e;--card-hover:#2f2b26;--text:#e8e0d5;--text2:#9e9487;--acc:#7a6f60;--tag:#2f2b26}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);transition:background .3s,color .3s}
+.anton{font-family:'Anton',sans-serif}
+.card{background:var(--card);cursor:pointer;transition:background .2s,transform .15s;display:flex;flex-direction:column;position:relative}
+.card:hover{background:var(--card-hover)}
+.card:active{transform:scale(.99)}
+.card .lu{position:absolute;bottom:6px;right:10px;font-size:8px;letter-spacing:1px;text-transform:uppercase;color:var(--text2);opacity:0;transition:opacity .2s}
+.card:hover .lu{opacity:.6}
+.t{background:var(--tag);color:var(--text2);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;padding:2px 6px;display:inline-block}
+.sr{display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(--acc);opacity:.5;font-size:11px}
+.sr:last-child{border:none}
+.ni{padding:5px 0;border-bottom:1px solid var(--acc);opacity:.5;font-size:12px}
+.ni:last-child{border:none}
+.nm{font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--text2);margin-top:1px}
+.spr-b{width:100%;height:10px;background:var(--tag);margin-top:6px;overflow:hidden}
+.spr-f{height:100%;background:var(--yellow)}
+.ca{display:flex;align-items:center;justify-content:center;gap:16px;min-height:70px}
+.cr{position:relative;width:50px;height:50px}
+.cr i{position:absolute;font-size:14px;color:var(--acc)}
+.cr i:nth-child(1){top:50%;left:50%;transform:translate(-50%,-50%);font-size:20px}
+.cr i:nth-child(2){top:0;left:50%;transform:translateX(-50%)}
+.cr i:nth-child(3){top:50%;right:0;transform:translateY(-50%)}
+.cr i:nth-child(4){bottom:0;left:50%;transform:translateX(-50%)}
+.cr i:nth-child(5){top:50%;left:0;transform:translateY(-50%)}
+.cpd{display:flex;gap:3px;align-items:center}
+.cpd .d{width:5px;height:5px;background:var(--green);border-radius:50%}
+.cpt{font-family:'Anton',sans-serif;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--text2);margin-left:6px}
+.ov{background:rgba(0,0,0,.5);position:fixed;inset:0;z-index:1000;display:none;justify-content:center;align-items:flex-start;padding:20px;overflow-y:auto}
+.ov.active{display:flex}
+.mc{background:var(--card);padding:30px;width:100%;max-width:900px;margin:20px auto;position:relative}
+.mcl{position:absolute;top:12px;right:16px;font-size:22px;cursor:pointer;color:var(--text2);border:none;background:none}
+.mcl:hover{color:var(--text)}
+.mc h2{font-family:'Anton',sans-serif;font-size:22px;letter-spacing:2px;text-transform:uppercase;margin-bottom:16px}
+.mc p{font-size:14px;line-height:1.6;color:var(--text2);margin-bottom:10px;max-width:600px;margin-left:auto;margin-right:auto}
 </style>
 </head>
 <body>
-<div class="wrap"><div class="grid" id="grid"></div></div>
-<div class="modal" id="modal"><div class="mc"><button class="mcl" id="mcl">&#10005;</button><h2 id="mt"></h2><div id="mb"></div></div></div>
+
+<div class="max-w-[1400px] mx-auto px-2 sm:px-4 py-4">
+<div id="grid" class="grid grid-cols-1 sm:grid-cols-6 gap-3"></div>
+</div>
+
+<div class="ov" id="modal">
+<div class="mc">
+<button class="mcl" id="mcl">&#10005;</button>
+<h2 id="mt" class="text-center"></h2>
+<div id="mb" class="text-center"></div>
+</div>
+</div>
+
 <script>
-(function(){try{var h=new Date().toLocaleString('en-US',{hour:'2-digit',hour12:false,timeZone:'America/Sao_Paulo'});if(parseInt(h)>=18||parseInt(h)<6){document.body.classList.add('dark');}}catch(e){}})();
+(function(){try{var h=new Date().toLocaleString('en-US',{hour:'2-digit',hour12:false,timeZone:'America/Sao_Paulo'});if(parseInt(h)>=18||parseInt(h)<6)document.body.classList.add('dark')}catch(e){}})();
 var ts=new Date().toLocaleString('en-US',{weekday:'short',month:'short',day:'numeric',hour:'2-digit',minute:'2-digit',timeZone:'America/Sao_Paulo'});
-var b=[
-{g:"c4r2",c:'<div class="ca"><div class="cr"><i class="fas fa-shield-halved"></i><i class="fas fa-oil-can"></i><i class="fas fa-microchip"></i><i class="fas fa-robot"></i><i class="fas fa-ship"></i></div><div class="cpd"><div class="d"></div><div class="d"></div><div class="d"></div><span class="cpt">Active</span></div></div><div style="font-size:12px;line-height:1.5;color:var(--text-secondary);margin-top:6px;">Thu Jul 30 &mdash; US strikes Iran day 5. Brent $88.51 WTI $84.18 NVDA $190.67. Fed decision. SPR 311.4M bbl.</div>',m:"<p>Thu Jul 30 — US entered 5th day of airstrikes against Iran. Netanyahu-Trump summit continues. Hormuz blockade plans discussed.</p><p>Brent $88.51 · WTI $84.18 · NVDA $190.67 (-3.42%). SPR 311.4M bbl — 43yr low.</p>"},
-{g:"c2r2",c:'<div style="margin-bottom:8px;"><span class="tag" style="background:var(--alert-red);color:#1a1815;">STRIKES DAY 5</span></div><div class="sr"><span>US Strikes</span><span>Day 5</span></div><div class="sr"><span>IRGC</span><span>Jordan attack</span></div><div class="sr"><span>Summit</span><span>Trump-Netanyahu</span></div><div class="sr"><span>Hormuz</span><span>Blockade plans</span></div>',m:"<p>Day 5 US airstrikes. IRGC attack on Jordan. Summit discussed Hormuz blockade.</p>"},
-{g:"c2",c:'<div class="big-num grn">$88.51</div><div class="lbl">Brent / bbl</div><div style="margin-top:4px;"><span style="font-family:Anton,sans-serif;font-size:18px;color:var(--alert-red);">+0.5%</span></div>',m:"<p>Brent $88.51 +0.5%</p>"},
-{g:"c2",c:'<div class="big-num grn">$84.18</div><div class="lbl">WTI / bbl</div><div style="margin-top:4px;"><span style="font-family:Anton,sans-serif;font-size:18px;color:var(--alert-green);">+6.2%</span></div>',m:"<p>WTI $84.18 +6.2%</p>"},
-{g:"c2",c:'<div class="big-num red">$190.67</div><div class="lbl">NASDAQ</div><div style="margin-top:4px;"><span style="font-family:Anton,sans-serif;font-size:18px;color:var(--alert-red);">-3.42%</span></div>',m:"<p>NVDA $190.67 -3.42%</p>"},
-{g:"c2",c:'<div class="mg"><div class="mi"><div class="mv grn">203</div><div class="ml">Pro</div></div><div class="mi"><div class="mv yel">87</div><div class="ml">Carbs</div></div><div class="mi"><div class="mv yel">62</div><div class="ml">Fat</div></div><div class="mi"><div class="mv grn">1,847</div><div class="ml">Cals</div></div></div>',m:"<p>Protein 203g · Carbs 87g · Fat 62g · Cals 1,847</p>"},
-{g:"c2",c:'<div style="margin-bottom:6px;"><span class="tag" style="background:var(--alert-green);color:#1a1815;">PUSH DAY</span></div><div class="ge"><span>Bench Press</span><span>4x8</span></div><div class="ge"><span>OHP</span><span>4x10</span></div><div class="ge"><span>Lat Raise</span><span>3x15</span></div>',m:"<p>Bench 4x8 · OHP 4x10 · Lat Raise 3x15</p>"},
-{g:"c2",c:'<div class="big-num yel">311.4M</div><div class="lbl">SPR bbl</div><div class="spr-bar"><div class="spr-fill" style="width:45%;"></div></div>',m:"<p>SPR 311.4M bbl — 43yr low</p>"},
-{g:"c3",c:'<div class="news-list" id="ln1"></div>',m:"<p>Iran news</p>"},
-{g:"c3",c:'<div class="news-list" id="ln2"></div>',m:"<p>NVDA news</p>"}
+
+var blocks=[
+{g:"sm:col-span-4 sm:row-span-2",c:'<div class="ca"><div class="cr"><i class="fas fa-shield-halved"></i><i class="fas fa-oil-can"></i><i class="fas fa-microchip"></i><i class="fas fa-robot"></i><i class="fas fa-ship"></i></div><div class="cpd"><div class="d"></div><div class="d"></div><div class="d"></div><span class="cpt">Active</span></div></div><div class="text-xs leading-relaxed mt-1" style="color:var(--text2)">Thu Jul 30 &mdash; US strikes Iran day 5. Brent $88.51 WTI $84.18 NVDA $190.67. Fed decision. SPR 311.4M bbl.</div>',m:"<p><strong>Thu Jul 30</strong> — US entered 5th day of airstrikes. Netanyahu-Trump summit continues. Hormuz blockade plans discussed.</p><p>Brent $88.51 · WTI $84.18 · NVDA $190.67 (-3.42%). SPR 311.4M bbl — 43yr low.</p>",ti:"CORE SYSTEM",ic:"microchip"},
+{g:"sm:col-span-2 sm:row-span-2",c:'<div class="mb-2"><span class="t" style="background:var(--red);color:#1a1815">STRIKES DAY 5</span></div><div class="sr"><span>US Strikes</span><span>Day 5</span></div><div class="sr"><span>IRGC</span><span>Jordan attack</span></div><div class="sr"><span>Summit</span><span>Trump-Netanyahu</span></div><div class="sr"><span>Hormuz</span><span>Blockade plans</span></div>',m:"<p>Day 5 US airstrikes. IRGC attack on Jordan. Summit discussed Hormuz blockade.</p>",ti:"IRAN CONFLICT",ic:"explosion"},
+{g:"sm:col-span-2",c:'<div class="anton text-5xl leading-none tracking-wider" style="color:var(--green)">$88.51</div><div class="text-[10px] tracking-widest uppercase mt-1" style="color:var(--text2)">Brent / bbl</div><div class="mt-1"><span class="anton text-lg" style="color:var(--red)">+0.5%</span></div>',m:"<p>Brent $88.51 +0.5%</p>",ti:"BRENT CRUDE",ic:"oil-can"},
+{g:"sm:col-span-2",c:'<div class="anton text-5xl leading-none tracking-wider" style="color:var(--green)">$84.18</div><div class="text-[10px] tracking-widest uppercase mt-1" style="color:var(--text2)">WTI / bbl</div><div class="mt-1"><span class="anton text-lg" style="color:var(--green)">+6.2%</span></div>',m:"<p>WTI $84.18 +6.2%</p>",ti:"WTI CRUDE",ic:"gas-pump"},
+{g:"sm:col-span-2",c:'<div class="anton text-5xl leading-none tracking-wider" style="color:var(--red)">$190.67</div><div class="text-[10px] tracking-widest uppercase mt-1" style="color:var(--text2)">NASDAQ</div><div class="mt-1"><span class="anton text-lg" style="color:var(--red)">-3.42%</span></div>',m:"<p>NVDA $190.67 -3.42%</p>",ti:"NVDA",ic:"microchip"},
+{g:"sm:col-span-2",c:'<div class="grid grid-cols-2 gap-2 mt-1"><div class="text-center p-1.5" style="background:var(--tag)"><div class="anton text-2xl leading-none" style="color:var(--green)">203</div><div class="text-[7px] tracking-widest uppercase" style="color:var(--text2)">Pro</div></div><div class="text-center p-1.5" style="background:var(--tag)"><div class="anton text-2xl leading-none" style="color:var(--yellow)">87</div><div class="text-[7px] tracking-widest uppercase" style="color:var(--text2)">Carbs</div></div><div class="text-center p-1.5" style="background:var(--tag)"><div class="anton text-2xl leading-none" style="color:var(--yellow)">62</div><div class="text-[7px] tracking-widest uppercase" style="color:var(--text2)">Fat</div></div><div class="text-center p-1.5" style="background:var(--tag)"><div class="anton text-2xl leading-none" style="color:var(--green)">1,847</div><div class="text-[7px] tracking-widest uppercase" style="color:var(--text2)">Cals</div></div></div>',m:"<p>Protein 203g · Carbs 87g · Fat 62g · Cals 1,847</p>",ti:"DAILY MACROS",ic:"chart-line"},
+{g:"sm:col-span-2",c:'<div class="mb-1"><span class="t" style="background:var(--green);color:#1a1815">PUSH DAY</span></div><div class="flex justify-between py-1 border-b border-[var(--acc)] opacity-50 text-xs"><span>Bench Press</span><span>4x8</span></div><div class="flex justify-between py-1 border-b border-[var(--acc)] opacity-50 text-xs"><span>OHP</span><span>4x10</span></div><div class="flex justify-between py-1 border-b border-[var(--acc)] opacity-50 text-xs"><span>Lat Raise</span><span>3x15</span></div>',m:"<p>Bench 4x8 · OHP 4x10 · Lat Raise 3x15</p>",ti:"BRUTE LOG",ic:"dumbbell"},
+{g:"sm:col-span-2",c:'<div class="anton text-5xl leading-none tracking-wider" style="color:var(--yellow)">311.4M</div><div class="text-[10px] tracking-widest uppercase mt-1" style="color:var(--text2)">SPR bbl</div><div class="spr-b"><div class="spr-f" style="width:45%"></div></div>',m:"<p>SPR 311.4M bbl — 43yr low</p>",ti:"SPR ALERT",ic:"oil-can"},
+{g:"sm:col-span-3",c:'<div class="overflow-y-auto max-h-[180px]" id="ln1"></div>',m:"<p>Iran news</p>",ti:"IRAN NEWS",ic:"newspaper"},
+{g:"sm:col-span-3",c:'<div class="overflow-y-auto max-h-[180px]" id="ln2"></div>',m:"<p>NVDA news</p>",ti:"AI &amp; NVDA NEWS",ic:"chart-bar"}
 ];
-var nd1=[{t:"US-Saudi Jets Strike Iranian Proxies",d:"Jul 30"},{t:"Brent $88.51 Geopolitical Premium Holds",d:"Jul 30"},{t:"WTI Surges 6.2% to $84.18",d:"Jul 30"},{t:"US Strikes Iran Fifth Day",d:"Jul 30"},{t:"Netanyahu-Trump Summit",d:"Jul 30"}];
+
+var nd1=[{t:"US-Saudi Jets Strike Iranian Proxies",d:"Jul 30"},{t:"Brent $88.51 Geopolitical Holds",d:"Jul 30"},{t:"WTI Surges 6.2% to $84.18",d:"Jul 30"},{t:"US Strikes Iran Fifth Day",d:"Jul 30"},{t:"Netanyahu-Trump Summit",d:"Jul 30"},{t:"SPR 311.4M 43yr Low",d:"Jul 30"},{t:"Fed Decision Today",d:"Jul 30"}];
 var nd2=[{t:"NVDA -3.42% at $190.67",s:"Bloomberg"},{t:"ARK Buys 79K shares $15.5M",s:"Investing"},{t:"Open Secure AI Alliance",s:"Reuters"},{t:"$1.4T AI Bet Paying Off",s:"TipRanks"},{t:"Circular Financing Risk",s:"Motley Fool"}];
-function rn(id,items){var e=document.getElementById(id);if(!e)return;var h='';for(var i=0;i<items.length;i++){h+='<div class="ni">'+items[i].t+'<div class="nm">'+(items[i].d||items[i].s||'')+'</div></div>';}e.innerHTML=h;}
+
+function rn(id,items){var e=document.getElementById(id);if(!e)return;var h='';for(var i=0;i<items.length;i++){h+='<div class="ni">'+items[i].t+'<div class="nm">'+(items[i].d||items[i].s||'')+'</div></div>'}e.innerHTML=h}
 rn('ln1',nd1);rn('ln2',nd2);
+
 var g=document.getElementById('grid');
-for(var i=0;i<b.length;i++){
-  var o=b[i];
+for(var i=0;i<blocks.length;i++){
+  var o=blocks[i];
   var d=document.createElement('div');
-  d.className='block'+(o.g?' '+o.g:'');
-  var icons=['microchip','explosion','oil-can','gas-pump','microchip','chart-line','dumbbell','oil-can','newspaper','chart-bar'];
-  d.innerHTML='<div class="block-title"><i class="fas fa-'+icons[i]+'"></i> '+['CORE SYSTEM','IRAN CONFLICT','BRENT CRUDE','WTI CRUDE','NVDA','DAILY MACROS','BRUTE LOG','SPR ALERT','IRAN NEWS','AI & NVDA NEWS'][i]+'</div><div class="block-content">'+o.c+'</div><div class="lu">'+ts+' BRT</div>';
-  d.onclick=(function(o){return function(){document.getElementById('mt').textContent='Details';document.getElementById('mb').innerHTML=o.m;document.getElementById('modal').classList.add('active');document.body.style.overflow='hidden';};})(o);
+  d.className='card p-3 sm:p-4 min-h-[100px] '+o.g;
+  d.innerHTML='<div class="flex items-center gap-2 mb-2"><i class="fas fa-'+o.ic+'" style="color:var(--acc);width:14px;text-align:center"></i><span class="anton text-[11px] tracking-[3px] uppercase" style="color:var(--text2)">'+o.ti+'</span></div><div class="flex-1 flex flex-col">'+o.c+'</div><div class="lu">'+ts+' BRT</div>';
+  d.onclick=(function(o){return function(){document.getElementById('mt').textContent=o.ti;document.getElementById('mb').innerHTML=o.m;document.getElementById('modal').classList.add('active');document.body.style.overflow='hidden'}})(o);
   g.appendChild(d);
 }
-document.getElementById('mcl').onclick=function(){document.getElementById('modal').classList.remove('active');document.body.style.overflow='';};
-document.getElementById('modal').onclick=function(e){if(e.target===this){document.getElementById('modal').classList.remove('active');document.body.style.overflow='';}};
-document.onkeydown=function(e){if(e.key==='Escape'){document.getElementById('modal').classList.remove('active');document.body.style.overflow='';}};
+
+document.getElementById('mcl').onclick=function(){document.getElementById('modal').classList.remove('active');document.body.style.overflow=''};
+document.getElementById('modal').onclick=function(e){if(e.target===this){this.classList.remove('active');document.body.style.overflow=''}};
+document.onkeydown=function(e){if(e.key==='Escape'){document.getElementById('modal').classList.remove('active');document.body.style.overflow=''}};
 </script>
 </body>
 </html>
