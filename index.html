@@ -3,131 +3,121 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>IronClaw Dashboard</title>
-<script src="https://cdn.tailwindcss.com"></script>
+<title>IronClaw Dashboard — Aug 1</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
-:root{--bg:#e8e0d5;--card:#ddd5c8;--card-hover:#d5cdbf;--text:#2c2820;--text2:#6b6559;--acc:#9e8f7a;--red:#c0392b;--green:#27ae60;--yellow:#d4a017;--tagbg:#d5cdbf}
-.dark{--bg:#1a1815;--card:#25221e;--card-hover:#2f2b26;--text:#e8e0d5;--text2:#9e9487;--acc:#7a6f60;--tagbg:#2f2b26}
-body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);margin:0;padding:0;min-height:100vh;transition:background .3s,color .3s}
-.anton{font-family:'Anton',sans-serif;letter-spacing:.5px}
-.card{background:var(--card);cursor:pointer;transition:background .2s,transform .15s;display:flex;flex-direction:column;position:relative;overflow:hidden}
-.card:hover{background:var(--card-hover)}
-.card:active{transform:scale(.98)}
-.tg{background:var(--tagbg);color:var(--text2);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;padding:2px 7px;display:inline-block}
-.sr{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--acc);opacity:.6;font-size:12px}
-.sr:last-child{border:none}
-.ni{padding:6px 0;border-bottom:1px solid var(--acc);opacity:.6;font-size:12px;line-height:1.3}
-.ni:last-child{border:none}
-.nm{font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--text2);margin-top:2px}
-.sprb{width:100%;height:8px;background:var(--tagbg);margin-top:6px;overflow:hidden;border-radius:4px}
-.sprf{height:100%;background:var(--yellow);border-radius:4px}
-.ca{display:flex;align-items:center;justify-content:center;gap:14px;min-height:60px;flex:1}
-.cr{position:relative;width:44px;height:44px}
-.cr i{position:absolute;font-size:13px;color:var(--acc)}
-.cr i:nth-child(1){top:50%;left:50%;transform:translate(-50%,-50%);font-size:18px}
-.cr i:nth-child(2){top:2px;left:50%;transform:translateX(-50%)}
-.cr i:nth-child(3){top:50%;right:2px;transform:translateY(-50%)}
-.cr i:nth-child(4){bottom:2px;left:50%;transform:translateX(-50%)}
-.cr i:nth-child(5){top:50%;left:2px;transform:translateY(-50%)}
-.cpd{display:flex;gap:3px;align-items:center}
-.cpd .d{width:5px;height:5px;background:var(--green);border-radius:50%}
-.cpt{font-family:'Anton',sans-serif;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--text2);margin-left:6px}.nopad{padding:0!important}
-.ovr{position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,.6);display:none;overflow-y:auto}
-.ovr.active{display:block}
-.mcw{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:12px}
-.mcb{background:var(--card);width:100%;max-width:1100px;padding:40px 28px;position:relative;margin:20vh auto}
-.mcb p{font-size:15px;line-height:1.7;margin-bottom:14px}
-.mcb .mct{font-family:'Anton',sans-serif;font-size:26px;letter-spacing:2px;text-transform:uppercase;margin-bottom:24px;text-align:center}
-.mxcb{position:absolute;top:14px;right:20px;font-size:24px;cursor:pointer;color:var(--text2);border:none;background:none;font-family:inherit;z-index:10}
-.mxcb:hover{color:var(--text)}
+* { margin:0; padding:0; box-sizing:border-box; }
+:root { --bg:#e8e0d5; --card:#ddd5c8; --card-hover:#d5cdbf; --text:#2c2820; --text-secondary:#6b6559; --accent:#9e8f7a; --alert-red:#c0392b; --alert-green:#27ae60; --alert-yellow:#d4a017; --tag-bg:#d5cdbf; --modal-overlay:rgba(44,40,32,0.7); }
+body.dark { --bg:#1a1815; --card:#25221e; --card-hover:#2f2b26; --text:#e8e0d5; --text-secondary:#9e9487; --accent:#7a6f60; --tag-bg:#2f2b26; --modal-overlay:rgba(0,0,0,0.7); }
+body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); padding:24px; transition:background .3s,color .3s; }
+::-webkit-scrollbar { width:6px; }
+::-webkit-scrollbar-track { background:transparent; }
+::-webkit-scrollbar-thumb { background:var(--accent); border-radius:3px; }
+.wrap { max-width:1400px; margin:0 auto; }
+.grid { display:grid; gap:16px; }
+@media (min-width:641px) {
+.grid { grid-template-columns:repeat(6,1fr); grid-auto-rows:auto; }
+.box-core { grid-column:span 4; grid-row:span 2; }
+.box-iran { grid-column:span 2; grid-row:span 2; }
+.box-brent { grid-column:span 2; }
+.box-wti { grid-column:span 2; }
+.box-nvda { grid-column:span 2; }
+.box-macros { grid-column:span 2; }
+.box-gym { grid-column:span 2; }
+.box-spr { grid-column:span 2; }
+.box-news-iran { grid-column:span 3; }
+.box-news-nvda { grid-column:span 3; }
+}
+@media (max-width:640px) {
+.grid { grid-template-columns:1fr; }
+body { padding:12px; }
+}
+.block { background:var(--card); padding:24px; cursor:pointer; transition:background .2s,transform .15s; position:relative; display:flex; flex-direction:column; }
+.block:hover { background:var(--card-hover); }
+.block:active { transform:scale(.99); }
+.block-title { font-family:'Anton',sans-serif; font-size:13px; letter-spacing:3px; text-transform:uppercase; color:var(--text-secondary); margin-bottom:16px; display:flex; align-items:center; gap:10px; }
+.block-title i { color:#9e8f7a; width:18px; text-align:center; }
+.block-content { flex:1; display:flex; flex-direction:column; }
+.big-number { font-family:'Anton',sans-serif; font-size:52px; line-height:1; text-transform:uppercase; letter-spacing:1px; }
+.big-number.green { color:var(--alert-green); }
+.big-number.red { color:var(--alert-red); }
+.big-number.yellow { color:var(--alert-yellow); }
+.label-sm { font-family:'Inter',sans-serif; font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--text-secondary); margin-top:4px; }
+.tag { display:inline-block; font-size:10px; letter-spacing:1.5px; text-transform:uppercase; background:var(--tag-bg); padding:3px 8px; color:var(--text-secondary); margin-top:6px; }
+.change-up { color:var(--alert-green); }
+.change-down { color:var(--alert-red); }
+.stat-row { display:flex; justify-content:space-between; align-items:flex-end; padding:8px 0; border-bottom:1px solid var(--accent); opacity:.4; }
+.stat-row:last-child { border-bottom:none; }
+.stat-row .stat-label { font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:var(--text-secondary); }
+.stat-row .stat-value { font-family:'Anton',sans-serif; font-size:18px; }
+.news-list { flex:1; overflow-y:auto; max-height:220px; }
+.news-list .news-item { padding:8px 0; border-bottom:1px solid var(--accent); opacity:.4; }
+.news-list .news-item:last-child { border-bottom:none; }
+.news-list .news-item .news-title { font-size:13px; line-height:1.3; color:var(--text); }
+.news-list .news-item .news-meta { font-size:10px; letter-spacing:1px; text-transform:uppercase; color:var(--text-secondary); margin-top:3px; }
+.spr-bar-bg { width:100%; height:16px; background:var(--tag-bg); margin-top:10px; overflow:hidden; }
+.spr-bar-fill { height:100%; background:var(--alert-yellow); transition:width 1s ease; }
+.macro-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:6px; }
+.macro-item { text-align:center; padding:8px; background:var(--tag-bg); }
+.macro-item .macro-value { font-family:'Anton',sans-serif; font-size:32px; line-height:1; }
+.macro-item .macro-label { font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--text-secondary); margin-top:2px; }
+.gym-exercise { display:flex; justify-content:space-between; padding:5px 0; border-bottom:1px solid var(--accent); opacity:.4; font-size:12px; line-height:1.3; }
+.gym-exercise:last-child { border-bottom:none; }
+.gym-exercise .gym-name { color:var(--text); }
+.gym-exercise .gym-done { color:var(--text-secondary); font-family:'Anton',sans-serif; font-size:14px; letter-spacing:1px; }
+.gym-exercise .gym-next { color:var(--alert-green); font-size:10px; letter-spacing:1px; text-transform:uppercase; }
+.gym-header { font-family:'Anton',sans-serif; font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--alert-yellow); margin:6px 0 2px 0; }
+.gym-section { display:flex; gap:6px; flex-wrap:wrap; margin-bottom:6px; }
+.gym-section .tag { font-size:9px; padding:2px 6px; }
+.core-animation { flex:1; display:flex; align-items:center; justify-content:center; gap:20px; position:relative; min-height:120px; }
+.core-icon-ring { position:relative; width:80px; height:80px; }
+.core-icon-ring i { position:absolute; font-size:20px; color:var(--accent); animation:orbit 6s linear infinite; }
+.core-icon-ring i:nth-child(1) { top:50%; left:50%; transform:translate(-50%,-50%); font-size:28px; animation:none; }
+.core-icon-ring i:nth-child(2) { top:0; left:50%; transform:translateX(-50%); animation-delay:0s; }
+.core-icon-ring i:nth-child(3) { top:50%; right:0; transform:translateY(-50%); animation-delay:1.5s; }
+.core-icon-ring i:nth-child(4) { bottom:0; left:50%; transform:translateX(-50%); animation-delay:3s; }
+.core-icon-ring i:nth-child(5) { top:50%; left:0; transform:translateY(-50%); animation-delay:4.5s; }
+@keyframes orbit { 0% { opacity:.2; } 50% { opacity:1; } 100% { opacity:.2; } }
+.core-pulse { display:flex; gap:6px; align-items:center; }
+.core-pulse .dot { width:8px; height:8px; background:var(--alert-green); border-radius:50%; animation:pulse-dot 1.5s ease-in-out infinite; }
+.core-pulse .dot:nth-child(2) { animation-delay:.3s; }
+.core-pulse .dot:nth-child(3) { animation-delay:.6s; }
+.core-pulse-text { font-family:'Anton',sans-serif; font-size:10px; letter-spacing:3px; text-transform:uppercase; color:var(--text-secondary); margin-left:8px; }
+@keyframes pulse-dot { 0%,100% { opacity:.2; transform:scale(.8); } 50% { opacity:1; transform:scale(1.2); } }
+.block .last-updated { position:absolute; bottom:8px; right:12px; font-size:9px; letter-spacing:1px; text-transform:uppercase; color:var(--text-secondary); opacity:0; transition:opacity .2s; }
+.block:hover .last-updated { opacity:.6; }
+.modal { display:none; position:fixed; top:0; left:0; right:0; bottom:0; background:var(--modal-overlay); z-index:1000; justify-content:center; align-items:center; padding:40px; }
+.modal.active { display:flex; }
+.modal-content { background:var(--card); padding:40px; max-width:700px; width:100%; max-height:80vh; overflow-y:auto; position:relative; }
+.modal-close { position:absolute; top:16px; right:20px; font-size:24px; cursor:pointer; color:var(--text-secondary); border:none; background:none; font-family:'Inter',sans-serif; }
+.modal-close:hover { color:var(--text); }
+.modal-content h2 { font-family:'Anton',sans-serif; font-size:28px; letter-spacing:2px; text-transform:uppercase; margin-bottom:20px; }
+.modal-content p { font-size:14px; line-height:1.6; color:var(--text-secondary); margin-bottom:12px; }
+.modal-content a { color:var(--text); text-decoration:underline; text-underline-offset:2px; }
+.modal-content a:hover { opacity:.7; }
 </style>
-<script>tailwind.config={theme:{extend:{screens:{xs:'480px'}}}}</script>
 </head>
 <body>
-
-<div id="grid" class="grid grid-cols-1 sm:grid-cols-6 gap-2 sm:gap-3 p-1 sm:p-2 max-w-[1440px] mx-auto"></div>
-
-<div class="ovr" id="modal">
-<div class="mcw">
-<div class="mcb">
-<button class="mxcb" id="mcl">&#10005;</button>
-<div class="mct" id="mt"></div>
-<div id="mb" style="max-width:700px;margin:0 auto;text-align:center;color:var(--text2)"></div>
+<div class="wrap">
+<div class="grid" id="dgrid"></div>
 </div>
-</div>
-</div>
-
+<div class="modal" id="modal"><div class="modal-content"><button class="modal-close" onclick="closeModal()">&#10005;</button><h2 id="modalTitle"></h2><div id="modalBody"></div></div></div>
 <script>
-(function(){try{var h=new Date().toLocaleString('en-US',{hour:'2-digit',hour12:false,timeZone:'America/Sao_Paulo'});if(parseInt(h)>=18||parseInt(h)<6)document.body.classList.add('dark')}catch(e){}})();
-var ts=new Date().toLocaleString('en-US',{weekday:'short',month:'short',day:'numeric',hour:'2-digit',minute:'2-digit',timeZone:'America/Sao_Paulo'});
-
-var blocks=[
-{g:"sm:col-span-4 sm:row-span-2",
- ic:"microchip",ti:"CORE SYSTEM",
- c:'<div class="ca flex-col sm:flex-row gap-2 sm:gap-3"><div class="cr"><i class="fas fa-shield-halved"></i><i class="fas fa-oil-can"></i><i class="fas fa-microchip"></i><i class="fas fa-robot"></i><i class="fas fa-ship"></i></div><div class="cpd"><div class="d"></div><div class="d"></div><div class="d"></div><span class="cpt">Active</span></div></div><div class="text-xs sm:text-sm leading-relaxed mt-1 sm:mt-2" style="color:var(--text2)">Thu Jul 30 &mdash; US strikes Iran day 5. Brent $88.51 (+0.5%) &middot; WTI $84.18 (+6.2%) &middot; NVDA $190.67 (-3.4%). Fed decision today. Netanyahu-Trump summit continues. Hormuz blockade plans discussed. SPR at 311.4M bbl.</div>',
- m:"<p><strong>Thursday Jul 30</strong> &mdash; The US entered its 5th consecutive day of airstrikes against Iran. The Netanyahu-Trump White House summit continues, with joint naval patrols and Hormuz blockade contingency plans reportedly discussed.</p><p><strong>Oil Markets:</strong> Brent crude <strong>$88.51/bbl (+0.5%)</strong>. WTI surged <strong>6.2% to $84.18/bbl</strong> as geopolitical risk snapped back. Markets bracing for the Fed's July 30 rate decision.</p><p><strong>NVIDIA (NVDA)</strong> closed at <strong>$190.67 (-3.42%)</strong> amid semiconductor selloff. ARK Invest bought 79K shares worth ~$15.5M on the dip.</p><p><strong>SPR Alert:</strong> US Strategic Petroleum Reserve at <strong>311.4M bbl</strong> &mdash; 43-year low. Infrastructure reaching end of life.</p>"},
-{g:"sm:col-span-2 sm:row-span-2",
- ic:"explosion",ti:"IRAN CONFLICT",
- c:'<div class="mb-2"><span class="tg" style="background:var(--red);color:#1a1815">STRIKES DAY 5</span> <span class="tg" style="background:var(--yellow);color:#1a1815">DIPLOMACY COLLAPSED</span></div><div class="sr"><span>US Strikes</span><span>Day 5 — ongoing</span></div><div class="sr"><span>IRGC</span><span>Missile attack on Jordan</span></div><div class="sr"><span>Netanyahu-Trump</span><span>Summit continues</span></div><div class="sr"><span>Hormuz</span><span>Blockade plans discussed</span></div><div class="sr"><span>Oman Proposal</span><span>On hold</span></div><div class="mt-1 text-[10px] tracking-wider uppercase" style="color:var(--red)">Pentagon confirms Day 5 airstrikes</div>',
- m:"<p><strong>US Airstrikes Enter Day 5:</strong> The Pentagon confirmed a fifth wave of airstrikes against Iranian targets overnight. The sustained campaign follows IRGC's ballistic missile attack on a US base in Jordan earlier this week.</p><p><strong>White House Summit:</strong> PM Netanyahu and President Trump discussed expanded military cooperation, joint naval patrols, and contingency plans for a Strait of Hormuz closure scenario.</p><p><strong>Hormuz Diplomacy:</strong> Oman's joint management proposal remains on hold as fighting continues.</p>"},
-{g:"sm:col-span-2",
- ic:"oil-can",ti:"BRENT CRUDE",
- c:'<div class="anton text-4xl sm:text-5xl leading-none" style="color:var(--green)">$88.51</div><div class="text-[11px] tracking-[2px] uppercase mt-1" style="color:var(--text2)">Brent / bbl</div><div class="mt-1"><span class="anton text-lg" style="color:var(--red)">+0.5%</span></div><div class="mt-auto pt-2"><div class="sr"><span>Previous Close</span><span>$88.09</span></div><div class="sr"><span>Weekly High</span><span>$102.00</span></div></div>',
- m:"<p><strong>Brent Crude: $88.51/bbl (+0.5%)</strong></p><p>Brent edged higher as the US launched airstrikes against Iran for the fifth consecutive day, keeping Strait of Hormuz risk premiums firmly priced in. Previous close was $88.09. Weekly high at $102.</p>"},
-{g:"sm:col-span-2",
- ic:"gas-pump",ti:"WTI CRUDE",
- c:'<div class="anton text-4xl sm:text-5xl leading-none" style="color:var(--green)">$84.18</div><div class="text-[11px] tracking-[2px] uppercase mt-1" style="color:var(--text2)">WTI / bbl</div><div class="mt-1"><span class="anton text-lg" style="color:var(--green)">+6.2%</span></div><div class="mt-auto pt-2"><div class="sr"><span>Previous Close</span><span>$79.26</span></div><div class="sr"><span>Retail Gas</span><span>~$4.00/gal</span></div></div>',
- m:"<p><strong>WTI Crude: $84.18/bbl (+6.2%)</strong></p><p>WTI surged sharply from a prior close of $79.26 as the path of least resistance flipped decisively upward. Five-session rally resumes. Retail gasoline averages near $4.00/gallon nationwide.</p>"},
-{g:"sm:col-span-2",
- ic:"microchip",ti:"NVDA",
- c:'<div class="anton text-4xl sm:text-5xl leading-none" style="color:var(--red)">$190.67</div><div class="text-[11px] tracking-[2px] uppercase mt-1" style="color:var(--text2)">NASDAQ</div><div class="mt-1"><span class="anton text-lg" style="color:var(--red)">-3.42%</span></div><div class="mt-auto pt-2"><div class="sr"><span>ARK Buy</span><span>79K shares</span></div><div class="sr"><span>Consensus Target</span><span style="color:var(--green)">$302 (+37%)</span></div></div>',
- m:"<p><strong>NVIDIA: $190.67 (-3.42%)</strong></p><p>NVDA slipped on macroeconomic uncertainty ahead of the Fed decision and circular financing concerns in the AI sector.</p><p><strong>ARK Invest Buys the Dip:</strong> Cathie Wood's ARK purchased 78,965 NVDA shares worth ~$15.5M, signaling confidence in the AI chip leader.</p><p><strong>Wall Street Consensus:</strong> Maintains 37% upside (~$302). Open Secure AI Alliance launched with NVIDIA as founding partner.</p>"},
-{g:"sm:col-span-2",
- ic:"chart-line",ti:"DAILY MACROS",
- c:'<div class="grid grid-cols-2 gap-2 mt-1"><div class="text-center p-2" style="background:var(--tagbg)"><div class="anton text-2xl leading-none" style="color:var(--green)">203</div><div class="text-[8px] tracking-[2px] uppercase mt-1" style="color:var(--text2)">Protein</div></div><div class="text-center p-2" style="background:var(--tagbg)"><div class="anton text-2xl leading-none" style="color:var(--yellow)">87</div><div class="text-[8px] tracking-[2px] uppercase mt-1" style="color:var(--text2)">Carbs</div></div><div class="text-center p-2" style="background:var(--tagbg)"><div class="anton text-2xl leading-none" style="color:var(--yellow)">62</div><div class="text-[8px] tracking-[2px] uppercase mt-1" style="color:var(--text2)">Fat</div></div><div class="text-center p-2" style="background:var(--tagbg)"><div class="anton text-2xl leading-none" style="color:var(--green)">1,847</div><div class="text-[8px] tracking-[2px] uppercase mt-1" style="color:var(--text2)">Calories</div></div></div>',
- m:"<p><strong>Daily Macros</strong></p><p>Protein: 203g &middot; Carbs: 87g &middot; Fat: 62g &middot; Calories: 1,847</p>"},
-{g:"sm:col-span-2",
- ic:"dumbbell",ti:"BRUTE LOG",
- c:'<div class="mb-2"><span class="tg" style="background:var(--green);color:#1a1815">PUSH DAY &mdash; DONE</span></div><div class="flex justify-between py-1.5 border-b border-[var(--acc)] opacity-60 text-xs"><span>Bench Press</span><span class="anton">4x8</span></div><div class="flex justify-between py-1.5 border-b border-[var(--acc)] opacity-60 text-xs"><span>Overhead Press</span><span class="anton">4x10</span></div><div class="flex justify-between py-1.5 border-b border-[var(--acc)] opacity-60 text-xs"><span>Lateral Raise</span><span class="anton">3x15</span></div><div class="anton text-[10px] tracking-[2px] uppercase mt-2" style="color:var(--yellow)">NEXT: PULL DAY</div>',
- m:"<p><strong>Brute Log — Push Day Done</strong></p><p>Bench Press: 4x8 &middot; Overhead Press: 4x10 &middot; Lateral Raise: 3x15</p><p><strong>Next Session:</strong> Pull Day</p>"},
-{g:"sm:col-span-2",
- ic:"oil-can",ti:"SPR ALERT",
- c:'<div class="anton text-4xl sm:text-5xl leading-none" style="color:var(--yellow)">311.4M</div><div class="text-[11px] tracking-[2px] uppercase mt-1" style="color:var(--text2)">Strategic Petroleum Reserve</div><div class="sprb"><div class="sprf" style="width:43.6%"></div></div><div class="flex justify-between text-[9px] mt-0.5" style="color:var(--text2)"><span>0</span><span>714M cap</span></div><div class="mt-1 text-[10px] tracking-wider uppercase" style="color:var(--red)">43-year low &mdash; emergency drawdowns continue</div>',
- m:"<p><strong>US Strategic Petroleum Reserve: 311.4M bbl</strong></p><p>43-year low. CNBC reports infrastructure reaching end of life with mechanical failures at 50-year-old caverns. China holds 1,400M bbl. Japan: 263M bbl. US weekly drawdown: -5.1M bbl (-1.6%).</p>"},
-{g:"sm:col-span-3",
- ic:"newspaper",ti:"IRAN NEWS",
- c:'<div class="overflow-y-auto max-h-[200px]" id="ln1"></div>',
- m:"<p>Iran &amp; Energy News Feed</p>"},
-{g:"sm:col-span-3",
- ic:"chart-bar",ti:"AI &amp; NVDA",
- c:'<div class="overflow-y-auto max-h-[200px]" id="ln2"></div>',
- m:"<p>AI &amp; NVIDIA News Feed</p>"}
-];
-
-var nd1=[{t:"US-Saudi Jets Strike Iranian Proxies in Iraq",d:"Jul 30"},{t:"Brent $88.51 — Geopolitical Premium Holds as Strikes Enter Day 5",d:"Jul 30"},{t:"WTI Surges 6.2% to $84.18 — Five-Session Rally Resumes",d:"Jul 30"},{t:"US Strikes Iran for Fifth Day; Pentagon Confirms",d:"Jul 30"},{t:"Netanyahu-Trump Summit: Joint Naval Patrols, Hormuz Plans",d:"Jul 30"},{t:"SPR Drops to 311.4M bbl — 43-Year Low",d:"Jul 30"},{t:"Fed Decision Today — Oil Markets Brace for Rate Impact",d:"Jul 30"}];
-var nd2=[{t:"NVDA Slides 3.42% — Closes at $190.67",s:"Bloomberg"},{t:"ARK Invest Buys 79K NVDA Shares ~$15.5M",s:"Investing.com"},{t:"Open Secure AI Alliance Names NVIDIA Founding Partner",s:"Reuters"},{t:"Microsoft, Meta, Google Signal $1.4T AI Bet",s:"TipRanks"},{t:"Circular Financing Concerns Weigh on Semis",s:"Motley Fool"}];
-
-function rn(id,items){var e=document.getElementById(id);if(!e)return;var h='';for(var i=0;i<items.length;i++){h+='<div class="ni">'+items[i].t+'<div class="nm">'+(items[i].d||items[i].s||'')+'</div></div>'}e.innerHTML=h}
-rn('ln1',nd1);rn('ln2',nd2);
-
-var g=document.getElementById('grid');
-for(var i=0;i<blocks.length;i++){
-  var o=blocks[i];
-  var d=document.createElement('div');
-  d.className='card p-3 sm:p-4 min-h-[110px] '+o.g;
-  d.innerHTML='<div class="flex items-center gap-2 mb-2"><i class="fas fa-'+o.ic+'" style="color:var(--acc);width:14px"></i><span class="anton text-[11px] tracking-[3px] uppercase" style="color:var(--text2)">'+o.ti+'</span></div><div class="flex-1 flex flex-col">'+o.c+'</div><div class="absolute bottom-1.5 right-2 text-[8px] tracking-wider uppercase" style="color:var(--text2);opacity:0;transition:opacity .2s">'+ts+' BRT</div>';
-  d.onmouseenter=function(){this.querySelector('div:last-child').style.opacity='.6'};
-  d.onmouseleave=function(){this.querySelector('div:last-child').style.opacity='0'};
-  d.onclick=(function(o){return function(){document.getElementById('mt').textContent=o.ti;document.getElementById('mb').innerHTML=o.m;document.getElementById('modal').classList.add('active');document.body.style.overflow='hidden'}})(o);
-  g.appendChild(d);
-}
-
-document.getElementById('mcl').onclick=function(){document.getElementById('modal').classList.remove('active');document.body.style.overflow=''};
-document.getElementById('modal').onclick=function(e){if(e.target===this){this.classList.remove('active');document.body.style.overflow=''}};
-document.onkeydown=function(e){if(e.key==='Escape'){document.getElementById('modal').classList.remove('active');document.body.style.overflow=''}};
+(function(){const h=new Date().toLocaleString('en-US',{hour:'2-digit',hour12:false,timeZone:'America/Sao_Paulo'});const hour=parseInt(h);if(hour>=18||hour<6)document.body.classList.add('dark');})();
+const NOW=new Date();const UPDATED_STR=NOW.toLocaleString('en-US',{weekday:'short',month:'short',day:'numeric',hour:'2-digit',minute:'2-digit',timeZone:'America/Sao_Paulo'});
+const newsData=[{title:"US Plans New Iran Strikes This Weekend",desc:"CENTCOM prepares heavy 2-week bombardment",date:"Aug 1"},{title:"Brent $89.00 — Hormuz Risk Premium Compresses",desc:"Diplomatic hopes cap gains",date:"Aug 1"},{title:"WTI Rises 3.8% to $86.80",desc:"Five-month war underpins supply fears",date:"Aug 1"},{title:"Saudis Form 14-Nation Red Sea Coalition",desc:"Houthi blockade threatens energy routes",date:"Aug 1"},{title:"Oil Tanker Hits Mine in Hormuz",desc:"Iranian media reports explosion",date:"Aug 1"},{title:"SPR Falls to 307.65M bbl — 1983 Low",desc:"GAO warns 25% of inventory unavailable",date:"Aug 1"},{title:"Kuwait Intercepts Drones; Bahrain Hit",desc:"Regional spillover intensifies",date:"Aug 1"},{title:"NVDA Rises 2% to $198.98",desc:"Amazon capex boost lifts semis",date:"Aug 1"}];
+const nvdaNews=[{title:"NVDA +2.02% at $198.98 — Amazon capex drives rally",src:"Bloomberg"},{title:"ARK Buys 79K NVDA ~$15.5M on Dip",src:"Investing.com"},{title:"Mark Cuban, Burry Warn AI Boom Relies on Nvidia",src:"Business Insider"},{title:"Goldman: 21.7x PE 'Compelling' After Kyber Delay Denied",src:"TradingKey"},{title:"Polymarket: 50% Chance NVDA Closes Aug Above $240",src:"Finbold"}];
+const blocks=[{g:"box-core",id:"core",icon:"fa-microchip",title:"CORE SYSTEM",content:'<div class="core-animation"><div class="core-icon-ring"><i class="fas fa-shield-halved"></i><i class="fas fa-oil-can"></i><i class="fas fa-microchip"></i><i class="fas fa-robot"></i><i class="fas fa-ship"></i></div><div class="core-pulse"><div class="dot"></div><div class="dot"></div><div class="dot"></div><span class="core-pulse-text">Active</span></div></div><div style="font-size:13px;line-height:1.6;color:var(--text-secondary);margin-top:8px;">Saturday Aug 1 — US plans fresh Iran strikes this weekend. Brent $89.00 (-1.06%) · WTI $86.80 (+3.84%) · NVDA $198.98 (+2.02%). Saudi Arabia forms 14-nation Red Sea coalition. Hormuz tanker mine strike. SPR at 307.65M bbl — lowest since 1983.</div>',modal:{title:"CORE SYSTEM",body:"<p><strong>Saturday Aug 1</strong> — The US is preparing a new wave of strikes against Iran as soon as this weekend, with CENTCOM readying options for a heavy 2-week bombardment of Iranian missile sites. Trump said Friday the US will be \"hitting them very hard.\" Kuwait reported drone attacks; Bahrain came under Iranian fire again. An oil tanker hit a mine in the Strait of Hormuz.</p><p>Saudi Arabia formed a 14-nation Multinational Maritime Defense Coalition to protect Red Sea and Bab el-Mandeb shipping from Houthi attacks — Pakistan, Turkey, and Egypt committing naval forces.</p><p><strong>Oil:</strong> Brent $89.00 (-1.06%) · WTI $86.80 (+3.84%)</p><p><strong>NVDA:</strong> $198.98 (+2.02%). Amazon capex boost. ARK bought 79K shares.</p><p><strong>SPR:</strong> 307.65M bbl — lowest since 1983. GAO reports 25% of inventory unavailable for drawdown.</p>"}},{g:"box-iran",id:"iran",icon:"fa-explosion",title:"IRAN CONFLICT",content:'<div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px;"><span class="tag" style="background:var(--alert-red);color:#1a1815;">STRIKES WEEKEND</span><span class="tag" style="background:var(--alert-yellow);color:#1a1815;">RED SEA COALITION</span></div><div class="stat-row"><span class="stat-label">US Strikes</span><span class="stat-value">Weekend planned</span></div><div class="stat-row"><span class="stat-label">IRGC</span><span class="stat-value">Kuwait drones</span></div><div class="stat-row"><span class="stat-label">Saudi Coalition</span><span class="stat-value">14 nations</span></div><div class="stat-row"><span class="stat-label">Hormuz</span><span class="stat-value">Tanker mine strike</span></div><div class="stat-row"><span class="stat-label">Bahrain</span><span class="stat-value">Iranian fire</span></div>',modal:{title:"IRAN CONFLICT",body:"<p>US planning new strikes on Iran as soon as this weekend — CENTCOM prepared for heavy 2-week bombardment. Saudi Arabia launched a 14-nation Multinational Maritime Defense Coalition for Red Sea/Bab el-Mandeb after Houthi blockade. Oil tanker hit mine in Strait of Hormuz. Kuwait intercepted drones; Bahrain under Iranian fire. Trump: 'We will be hitting them very hard.'</p>"}},{g:"box-brent",id:"brent",icon:"fa-oil-can",title:"BRENT CRUDE",content:'<div class="big-number green">$89.00</div><div class="label-sm">Brent / bbl</div><div style="margin-top:6px;"><span class="change-down" style="font-family:\'Anton\',sans-serif;font-size:22px;">-1.06%</span></div><div style="margin-top:auto;padding-top:8px;"><div class="stat-row"><span class="stat-label">Prev Close</span><span class="stat-value">$89.95</span></div><div class="stat-row"><span class="stat-label">Weekly High</span><span class="stat-value">$102</span></div></div>',modal:{title:"BRENT",body:"<p>Brent $89.00 (-1.06%) — Dipped on hopes for diplomatic solution to US-Iran war and increased tanker traffic through Hormuz. Prev close $89.95. Weekly high $102. Saudi Red Sea coalition adds supply-route stability premium.</p>"}},{g:"box-wti",id:"wti",icon:"fa-gas-pump",title:"WTI CRUDE",content:'<div class="big-number green">$86.80</div><div class="label-sm">WTI / bbl</div><div style="margin-top:6px;"><span class="change-up" style="font-family:\'Anton\',sans-serif;font-size:22px;">+3.84%</span></div><div style="margin-top:auto;padding-top:8px;"><div class="stat-row"><span class="stat-label">Prev Close</span><span class="stat-value">$83.59</span></div><div class="stat-row"><span class="stat-label">Retail Gas</span><span class="stat-value">~$4.00</span></div></div>',modal:{title:"WTI",body:"<p>WTI $86.80 (+3.84%) — Surged as upstream FCF generation remains strong. Iran war underpins supply fears. Prev close $83.59. Retail gas ~$4.00/gal. 52-week high $119.47.</p>"}},{g:"box-nvda",id:"nvda",icon:"fa-microchip",title:"NVDA",content:'<div class="big-number green">$198.98</div><div class="label-sm">NASDAQ</div><div style="margin-top:6px;"><span class="change-up" style="font-family:\'Anton\',sans-serif;font-size:22px;">+2.02%</span></div><div style="margin-top:auto;padding-top:8px;"><div class="stat-row"><span class="stat-label">ARK Buy</span><span class="stat-value">79K shares</span></div><div class="stat-row"><span class="stat-label">Consensus Target</span><span class="stat-value change-up">$240 (+21%)</span></div></div>',modal:{title:"NVDA",body:"<p>NVDA $198.98 (+2.02%). Amazon raised capex forecast, boosting semis. ARK Invest bought 79K shares (~$15.5M). Goldman: 21.7x PE 'compelling' after Kyber delay denied. Polymarket: 50% chance NVDA closes Aug above $240. Mark Cuban & Michael Burry warn AI boom dangerously reliant on Nvidia. Next earnings: Aug 26, 2026.</p>"}},{g:"box-macros",id:"macros",icon:"fa-chart-line",title:"DAILY MACROS",content:'<div class="macro-grid"><div class="macro-item"><div class="macro-value green">203</div><div class="macro-label">Protein</div></div><div class="macro-item"><div class="macro-value yellow">87</div><div class="macro-label">Carbs</div></div><div class="macro-item"><div class="macro-value yellow">62</div><div class="macro-label">Fat</div></div><div class="macro-item"><div class="macro-value green">1,847</div><div class="macro-label">Cals</div></div></div>',modal:{title:"MACROS",body:"<p>Protein 203g · Carbs 87g · Fat 62g · Calories 1,847</p>"}},{g:"box-gym",id:"gym",icon:"fa-dumbbell",title:"BRUTE LOG",content:'<div class="gym-section"><span class="tag" style="background:var(--alert-green);color:#1a1815;">PUSH DAY</span></div><div class="gym-exercise"><span class="gym-name">Bench Press</span><span class="gym-done">4x8</span></div><div class="gym-exercise"><span class="gym-name">OHP</span><span class="gym-done">4x10</span></div><div class="gym-exercise"><span class="gym-name">Lat Raise</span><span class="gym-done">3x15</span></div><div class="gym-header">NEXT: PULL DAY</div>',modal:{title:"GYM",body:"<p>Push Day done. Bench 4x8 · OHP 4x10 · Lat Raise 3x15</p>"}},{g:"box-spr",id:"spr",icon:"fa-oil-can",title:"SPR ALERT",content:'<div class="big-number yellow">307.65M</div><div class="label-sm">Strategic Petroleum Reserve</div><div class="spr-bar-bg"><div class="spr-bar-fill" style="width:43.1%;"></div></div><div style="margin-top:4px;font-size:10px;color:var(--alert-red);letter-spacing:1px;text-transform:uppercase;">1983 low · GAO: 25% unavailable</div>',modal:{title:"SPR",body:"<p><strong>US SPR:</strong> 307.65M bbl — lowest since 1983 (43.1% of 714M cap). GAO warns 25% of inventory unavailable for drawdown due to outages. Weekly drawdown: -5.5M bbl.</p><p><strong>China:</strong> ~1,400M bbl strategic reserve</p><p><strong>Japan:</strong> ~263M bbl (188 days of imports)</p>"}},{g:"box-news-iran",id:"iran-news",icon:"fa-newspaper",title:"IRAN NEWS",content:'<div class="news-list" id="iranNewsList"></div>',modal:{title:"NEWS",body:"<p>Iran & Energy News Feed</p>"}},{g:"box-news-nvda",id:"nvda-news",icon:"fa-chart-bar",title:"AI &amp; NVDA NEWS",content:'<div class="news-list" id="nvdaNewsList"></div>',modal:{title:"NVDA NEWS",body:"<p>AI & NVDA News Feed</p>"}}];
+blocks.forEach((b,i)=>{const d=document.createElement('div');d.className='block'+(b.g?' '+b.g:'');d.dataset.index=i;d.innerHTML='<div class="block-title"><i class="fas '+b.icon+'"></i> '+b.title+'</div><div class="block-content">'+b.content+'</div><div class="last-updated">'+UPDATED_STR+' BRT</div>';d.addEventListener('click',()=>openModal(b.modal.title,b.modal.body,b.id));document.getElementById('dgrid').appendChild(d);});
+function renderNews(id,items,n){const e=document.getElementById(id);if(!e)return;e.innerHTML='';items.slice(0,n||5).forEach(i=>{const d=document.createElement('div');d.className='news-item';d.innerHTML='<div class="news-title">'+i.title+'</div><div class="news-meta">'+(i.date||i.src||'')+'</div>';e.appendChild(d);});}
+renderNews('iranNewsList',newsData,5);renderNews('nvdaNewsList',nvdaNews,5);
+function openModal(t,b,s){document.getElementById('modalTitle').textContent=t;document.getElementById('modalBody').innerHTML=b;document.getElementById('modal').classList.add('active');document.body.style.overflow='hidden';}
+function closeModal(){document.getElementById('modal').classList.remove('active');document.body.style.overflow='';}
+document.getElementById('modal').addEventListener('click',(e)=>{if(e.target===document.getElementById('modal'))closeModal();});
+document.addEventListener('keydown',(e)=>{if(e.key==='Escape')closeModal();});
 </script>
 </body>
 </html>
